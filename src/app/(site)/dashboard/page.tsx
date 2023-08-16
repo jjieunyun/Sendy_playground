@@ -1,11 +1,14 @@
 import {NextPage} from "next";
+import Image from "next/image";
+import logo from '@image/SP_logo.svg'
+
 
 const Dashboard = () => {
 
   return(
-    <h1>
-      Dashboard
-    </h1>
+    <main>
+      <Image src={logo} alt=""/>
+    </main>
   )
 }
 
