@@ -24,18 +24,23 @@ module.exports = {
             spacing: px0_200,
             borderRadius: px0_100,
             width: px0_2000,
-            height: px0_2000
+            height: px0_2000,
+            animation: {
+                'zoomAndMove': 'zoomAndMove 2s forwards'
+            },
         },
         fontFamily: {
             sans: ['Noto Sans KR', 'sans-serif'],
+            neo : ['NeoDunggeunmo', 'sans-serif'],
         },
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
             white: '#ffffff',
             sp_pink: '#FF5A8E',
-            sp_mint: '#29FDA4',
+            sp_green: '#29FDA4',
             sp_light_blue: '#A9DEF9',
+            sp_blue: '#0EAEFF',
         },
         screens: {
             'lg': {'max': '1023px'},

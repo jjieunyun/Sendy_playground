@@ -5,7 +5,7 @@ import React from "react";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'React Sendy Console',
+  title: 'SENDY_Playground',
 }
 
 export default function RootLayout({
