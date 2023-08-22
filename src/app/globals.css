@@ -2,24 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Neo둥근모 */
-@import url('//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@1.530/neodgm/style.css');
-
-/* Neo둥근모 Code */
-@import url('//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@1.530/neodgm_code/style.css');
-
 html,
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     box-sizing: border-box;
     background-color: #121212;
 }
-
-/*.font-neo { font-family: 'NeoDunggeunmo'; }*/
-
-/*.font-neo-code { font-family: 'NeoDunggeunmo Code'; }*/
 
 @keyframes zoomAndMove {
     0% {
