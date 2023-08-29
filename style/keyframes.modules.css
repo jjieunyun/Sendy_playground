@@ -38,5 +38,5 @@
 }
 
 .moveLogo {
-   animation: MoveToUp 1s forwards;
+   animation: MoveToUp 500ms forwards;
 }
