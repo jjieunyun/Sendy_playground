@@ -38,7 +38,7 @@ const Auth: NextPage = () => {
             setState(prevState => ({...prevState, cloud1Visible: true, cloud2Visible: true}));
         };
         
-        const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+        const wait = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
         
         animateSequence();
     }, []);
