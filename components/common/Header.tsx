@@ -20,13 +20,12 @@ export default function Header() {
     
     useEffect(() => {
         const handleEscape = (event:any) => {
-            if (event.keyCode === 27) {  // 27 is the keyCode for the Escape key
+            if (event.keyCode === 27) {
                 closeSidebar();
             }
         };
         window.addEventListener('keydown', handleEscape);
-        
-        // Clean up the event listener when the component unmounts
+
         return () => {
             window.removeEventListener('keydown', handleEscape);
         };
@@ -36,11 +35,12 @@ export default function Header() {
         <div className="w-full h-full relative">
             <div
                 className={`fixed inset-0 bg-black transition-opacity duration-500 ease-in-out ${sidebarVisible ? 'opacity-50' : 'opacity-0 pointer-events-none'}`}
-                onClick={closeSidebar}
-            ></div>
+                onClick={closeSidebar}>
+
+            </div>
             
-            <nav className="w-full flex justify-between px-24 pt-8 z-20">
-                <Image src={logo} alt="logo" onClick={()=>router.push('/main')} className="cursor-pointer"/>
+            <nav className="w-full flex justify-between items-center px-24 py-8 z-20">
+                <Image src={logo} alt="logo" onClick={()=>router.push('/main')} className="cursor-pointer h-full"/>
                 <Image
                     src={hamburger}
                     alt="hamburger"
