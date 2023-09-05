@@ -1,0 +1,42 @@
+@keyframes moveCloud {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-100%);
+    }
+    50% {
+        transform: translateY(-50%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes MoveToUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-180px);
+    }
+}
+
+
+.moveCloud {
+    animation: moveCloud 4s forwards;
+}
+
+.bounce {
+    animation: bounce 1s forwards;
+}
+
+.moveLogo {
+   animation: MoveToUp 500ms forwards;
+}
