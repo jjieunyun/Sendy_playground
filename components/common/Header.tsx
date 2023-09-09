@@ -32,11 +32,10 @@ export default function Header() {
     }, []);
     
     return (
-        <div className="w-full h-full relative">
+        <div className="w-full h-full relative z-10">
             <div
                 className={`fixed inset-0 bg-black transition-opacity duration-500 ease-in-out ${sidebarVisible ? 'opacity-50' : 'opacity-0 pointer-events-none'}`}
                 onClick={closeSidebar}>
-
             </div>
             
             <nav className="w-full flex justify-between items-center px-24 py-8 z-20">
