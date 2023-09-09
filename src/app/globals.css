@@ -12,6 +12,10 @@ body {
     color: #fff;
 }
 
+.scroll-hidden::-webkit-scrollbar {
+    display: none;
+}
+
 @keyframes zoomAndMove {
     0% {
         transform: scale(1) translateY(0);

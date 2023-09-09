@@ -15,10 +15,10 @@ export default function RootLayout({children,}: { children: React.ReactNode; }) 
     return (
         <html lang="ko">
         <body className="h-screen">
-        <div className="h-96 w-full">
+        <div className="h-100 w-full">
             <Header/>
         </div>
-        <div className="h-[calc(100vh-96px)] w-full flex justify-center">
+        <div className="h-[calc(100vh-100px)] w-full flex justify-center">
             {children}
         </div>
         </body>
