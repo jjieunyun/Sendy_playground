@@ -7,7 +7,6 @@ import profile from '@image/account/profile.svg'
 import heartFull from '@image/account/heart_full.svg'
 import heartEmpty from '@image/account/heart_empty.svg'
 import camera from '@image/account/camera.svg'
-
 import {useState} from "react";
 
 export default function MyAccount() {
