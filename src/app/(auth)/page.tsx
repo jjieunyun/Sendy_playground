@@ -87,7 +87,7 @@ const Auth: NextPage = () => {
                 >
                     {
                         currentTab === '참여자' && (
-                            <div className="w-full h-full bg-sp_green z-20">
+                            <div className="w-full h-full z-20">
                                 <LoginForm/>
                             </div>
                         )

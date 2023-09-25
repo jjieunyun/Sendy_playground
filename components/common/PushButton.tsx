@@ -14,17 +14,17 @@ const THEME_STYLES = {
     green: {
         containerBg: 'bg-[#00C178]',
         buttonBg: 'bg-sp_green',
-        buttonText: '',
+        buttonText: 'text-[#000000]',
     },
     white_green: {
         containerBg: 'bg-[#00C178]',
         buttonBg: 'bg-white',
-        buttonText: '',
+        buttonText: 'text-[#000000]',
     },
     white_pink: {
         containerBg: 'bg-[#FF0099]',
         buttonBg: 'bg-white',
-        buttonText: '',
+        buttonText: 'text-[#000000]',
     },
 };
 
