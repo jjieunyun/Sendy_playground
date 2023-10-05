@@ -27,7 +27,7 @@ export default function MyAccount() {
     const nonEditMode = 'border-transparent p-16'
     
     return (
-        <main className="pb-64 relative">
+        <main className="pb-64 mt-100 relative">
             <Image src={phone} alt="phone" className="w-full h-full"/>
             <section className={'absolute top-0 w-full h-[calc(100%-64px)] pt-50 pb-149 px-50'}>
                 <article className="relative">

@@ -39,6 +39,11 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
         closeSidebar()
     }
     
+    const goToPage = (path:string) => {
+        router.push(path)
+        closeSidebar()
+    }
+    
     return(
         <section className="w-full h-full bg-[#1A1A1A] pt-44 pb-24">
             <div className="flex w-full h-full flex-col justify-between">
@@ -56,11 +61,12 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
                         </div>
                         <Image src={setting} alt="setting" onClick={goToAccount} className="cursor-pointer"/>
                     </article>
-                    <article>
+                    <article >
                         {
                             menuData.map(item => {
                                 return(
-                                    <div key={item.id} className="flex items-center px-24 py-8 gap-x-8 cursor-pointer mt-40 hover:bg-[#2f2f2f] transition-all duration-200" onClick={()=>router.push(item.path)}>
+                                    <div key={item.id} className="flex items-center px-24 py-8 gap-x-8 cursor-pointer mt-40 hover:bg-[#2f2f2f] transition-all duration-200"
+                                         onClick={()=>goToPage(item.path)}>
                                         <span className="text-24">{item.title}</span>
                                         {
                                             item.title === '경품추첨' && <Image src={iconNew} alt="iconNew" className="ml-8"/>
@@ -72,7 +78,7 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
                     </article>
                 </div>
                 <div className="w-full flex justify-end" onClick={()=> router.push('/')}>
-                    <Image src={logout} alt="logout" className="mr-24"/>
+                    <Image src={logout} alt="logout" className="mr-24 cursor-pointer"/>
                 </div>
             </div>
         </section>

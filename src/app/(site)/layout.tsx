@@ -10,15 +10,13 @@ const myFont = localFont({
 
 export default function DashboardLayout({children}: { children: React.ReactNode; }) {
     return (
-        <html lang="ko" className={myFont.className}>
-        <body className={`h-screen ${myFont.className}`}>
-        <div className="h-100 w-full">
-            <Header/>
-        </div>
-        <div className="h-[calc(100vh-100px)] w-full flex justify-center">
-            {children}
-        </div>
-        </body>
-        </html>
+        <section className={`h-screen ${myFont.className}`}>
+            <div className="h-100 fixed w-full bg-transparent z-10">
+                <Header/>
+            </div>
+            <div className="h-screen w-full flex justify-center">
+                {children}
+            </div>
+        </section>
     );
 }
