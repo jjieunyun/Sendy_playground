@@ -16,7 +16,7 @@ const menuData = [
     {
         id : uuidv4(),
         title : '랜덤식사',
-        path : '/main',
+        path : '/random-lunch',
     },
     {
         id : uuidv4(),
@@ -26,7 +26,7 @@ const menuData = [
     {
         id : uuidv4(),
         title : '맛집리스트',
-        path : '/main',
+        path : '/random-lunch',
     },
 ]
 

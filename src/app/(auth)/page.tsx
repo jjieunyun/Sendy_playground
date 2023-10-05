@@ -17,7 +17,7 @@ const Auth: NextPage = () => {
     const [bounce, setBounce] = useState(false);
     const [showBigCloud, setShowBigCloud] = useState(false);
     const [showSmallCloud, setShowSmallCloud] = useState(false);
-    const [currentTab, setCurrentTab] = useState(null);
+    const [currentTab, setCurrentTab] = useState<'참여자'|'관리자'|null>(null);
     
     
     const handleBgFadeIn = () => {
@@ -88,14 +88,14 @@ const Auth: NextPage = () => {
                     {
                         currentTab === '참여자' && (
                             <div className="w-full h-full z-20">
-                                <LoginForm/>
+                                <LoginForm handleTabChange={handleTabChange}/>
                             </div>
                         )
                     }
                     {
                         !currentTab && (
                             <div className="flex w-full gap-x-24 justify-center">
-                                <PushButton label={'관리자용'} theme={'pink'} onClick={()=>handleTabChange('관리자')}/>
+                                <PushButton label={'관리자용'} theme={'pink'} onClick={()=>handleTabChange(null)}/>
                                 <PushButton label={'참여자용'} theme={'green'} onClick={()=>handleTabChange('참여자')}/>
                             </div>
                         )

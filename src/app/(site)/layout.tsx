@@ -1,20 +1,17 @@
 import "../globals.css";
-import {Inter} from "next/font/google";
 import React from "react";
 import Header from "@components/common/Header";
-const inter = Inter({subsets: ["latin"]});
+import localFont from "next/font/local";
+
+const myFont = localFont({
+    src: '../fonts/NeoDunggeunmoPro-Regular.ttf',
+})
 
 
-export const metadata = {
-    title: "SENDY_Playground",
-};
-
-
-
-export default function RootLayout({children,}: { children: React.ReactNode; }) {
+export default function DashboardLayout({children}: { children: React.ReactNode; }) {
     return (
-        <html lang="ko">
-        <body className="h-screen">
+        <html lang="ko" className={myFont.className}>
+        <body className={`h-screen ${myFont.className}`}>
         <div className="h-100 w-full">
             <Header/>
         </div>
