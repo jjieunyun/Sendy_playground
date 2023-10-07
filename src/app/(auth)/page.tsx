@@ -1,6 +1,6 @@
 "use client";
 import type {NextPage} from "next";
-import logo from "@image/sp_logo.svg";
+import logo from "@image/logo.svg";
 import Image from "next/image";
 import bottomBG from '@image/web-BG 1.png'
 import PushButton from "@components/common/PushButton";
@@ -45,7 +45,7 @@ const Auth: NextPage = () => {
             <motion.div
                 className="z-10 "
                 initial={{ scale: 1, y: 0 }}
-                animate={{ scale: 2, y: -300 }}
+                animate={{ scale: 2, y: -360 }}
                 transition={{
                     scale: { duration: 0.5 },
                     y: { duration: 0.2, delay: 1 , type: "spring", stiffness: 100}

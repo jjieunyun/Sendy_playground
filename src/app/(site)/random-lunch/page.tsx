@@ -1,4 +1,3 @@
-"use client";
 import RandomLunchMain from "@components/random-lunch/RandomLunchMain";
 import {Suspense} from "react";
 
@@ -11,10 +10,14 @@ async function getInitStatus() {
 
 export default async function RandomLunchPage() {
     const hasGroup = await getInitStatus()
-
-    return (
-        <Suspense>
-            <RandomLunchMain hasGroup={hasGroup}/>
-        </Suspense>
-    )
+    
+    if(hasGroup){
+         return <h1>noGroup</h1>
+    }else {
+        return (
+            <Suspense>
+                <RandomLunchMain hasGroup={hasGroup}/>
+            </Suspense>
+        )
+    }
 }
