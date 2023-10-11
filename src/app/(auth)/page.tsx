@@ -1,6 +1,6 @@
 "use client";
 import type {NextPage} from "next";
-import logo from "@image/logo.svg";
+import logo from "@image/sendyplayground-logo.svg";
 import Image from "next/image";
 import bottomBG from '@image/web-BG 1.png'
 import PushButton from "@components/common/PushButton";
@@ -45,7 +45,7 @@ const Auth: NextPage = () => {
             <motion.div
                 className="z-10 "
                 initial={{ scale: 1, y: 0 }}
-                animate={{ scale: 2, y: -360 }}
+                animate={{ scale: 1.5, y: '-300px' }}
                 transition={{
                     scale: { duration: 0.5 },
                     y: { duration: 0.2, delay: 1 , type: "spring", stiffness: 100}
@@ -69,9 +69,9 @@ const Auth: NextPage = () => {
                 }}
             >
                 <Image src={bottomBG} alt='bottomBG'
-                       className="absolute w-full h-full bottom-0 z-[2]"/>
+                       className="fixed w-full h-screen bottom-0 z-[2]"/>
                 <motion.div
-                    className={`absolute w-full h-fit z-10`}
+                    className={`absolute w-full z-10`}
                     initial={{ bottom: "-100%" }}
                     animate={{ bottom: bounce ? "30%" : "-100%" }}
                     transition={{
@@ -133,7 +133,7 @@ const Auth: NextPage = () => {
                         delay: 4,
                         duration : 2
                     }}
-                    className={`absolute right-0 bottom-[54%]`}
+                    className={`absolute right-0 bottom-[70%]`}
                 >
                     <Image src={cloudR2} alt={'cloudRight'}/>
                 </motion.div>
@@ -144,7 +144,7 @@ const Auth: NextPage = () => {
                         delay: 4,
                         duration : 2
                     }}
-                    className={`absolute left-0 bottom-[54%]`}
+                    className={`absolute left-0 bottom-[70%]`}
                 >
                     <Image src={cloudL2} alt={'cloudLeft'}/>
                 </motion.div>
