@@ -39,10 +39,11 @@ export default function Header() {
             </div>
             
             <nav className="w-full flex justify-between items-center px-24 py-8 z-20">
-                <Image src={logo} alt="logo" onClick={()=>router.push('/main')} className="cursor-pointer h-full"/>
+                <Image src={logo} width={124} alt="logo" onClick={()=>router.push('/main')} className="cursor-pointer h-full"/>
                 <Image
                     src={hamburger}
                     alt="hamburger"
+                    width={40}
                     className="cursor-pointer"
                     onClick={toggleSidebar}
                 />

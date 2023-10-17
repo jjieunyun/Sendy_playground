@@ -27,6 +27,7 @@ module.exports = {
             height: px0_2000,
             animation: {
                 zoomAndMove: "zoomAndMove 2s forwards",
+                slider: 'slider 5s linear infinite'
             },
             fontFamily: {},
             colors: {
@@ -40,7 +41,17 @@ module.exports = {
             },
             backgroundImage: () => ({
                 'gradient-linear': 'linear-gradient(180deg, #C3A9F9 10%, #FECBFF 100%)',
-            })
+            }),
+            keyframes: {
+                slider: {
+                    '0%': {
+                        transform: 'translateX(0px)'
+                    },
+                    '100%': {
+                        transform: 'translateX(-580px)'
+                    }
+                },
+            },
         },
         variants: {
             extend: {

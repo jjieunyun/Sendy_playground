@@ -12,7 +12,7 @@ export default function RandomLunchMain({hasGroup}:{hasGroup:boolean}) {
         up: { y: "-30px" }
     };
     return (
-        <main className="w-full h-screen overflow-hidden z-0 bg-[url('/image/random-lunch/lunch_bg.svg')] bg-no-repeat bg-cover">
+        <main className="w-full h-screen overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover">
             <div className="relative z-[-1]">
                 <motion.div
                     initial="start"
@@ -20,11 +20,11 @@ export default function RandomLunchMain({hasGroup}:{hasGroup:boolean}) {
                     variants={bounceUpVariants}
                     transition={{
                         repeat: Infinity,
-                        duration: 2,  // 0.5초 동안 애니메이션 수행
+                        duration: 2,
                         ease: "easeInOut" // 애니메이션 타이밍 함수
                     }}
                 >
-                    <Image src={left} alt="left" className="absolute left-[-80px] top-80"/>
+                    <Image src={left} alt="left" className="absolute left-[-80px] top-[180px]"/>
                 </motion.div>
                 <motion.div
                     initial="start"
@@ -36,7 +36,7 @@ export default function RandomLunchMain({hasGroup}:{hasGroup:boolean}) {
                         ease: "easeInOut"
                     }}
                 >
-                    <Image src={right} alt="right" className="absolute right-[-80px] top-100"/>
+                    <Image src={right} alt="right" className="absolute right-[-80px] top-[200px]"/>
                 </motion.div>
             </div>
             

@@ -104,7 +104,7 @@ const Auth: NextPage = () => {
                 </motion.div>
                 <motion.div
                     initial={{ right: "-50%" }}
-                    animate={{ right: showBigCloud ? "0%" : "-50%" }}
+                    animate={{ right: showBigCloud ? "-10%" : "-50%" }}
                     transition={{
                         delay: 3,
                         duration : 2
@@ -116,7 +116,7 @@ const Auth: NextPage = () => {
                 
                 <motion.div
                     initial={{ left: "-50%" }}
-                    animate={{ left: showBigCloud ? "0%" : "-50%" }}
+                    animate={{ left: showBigCloud ? "-10%" : "-50%" }}
                     transition={{
                         delay: 3,
                         duration : 2
@@ -128,23 +128,23 @@ const Auth: NextPage = () => {
                 </motion.div>
                 <motion.div
                     initial={{ right: "-50%" }}
-                    animate={{ right: showSmallCloud ? "0%" : "-50%" }}
+                    animate={{ right: showSmallCloud ? "-5%" : "-50%" }}
                     transition={{
                         delay: 4,
                         duration : 2
                     }}
-                    className={`absolute right-0 bottom-[70%]`}
+                    className={`absolute right-0 bottom-[65%]`}
                 >
                     <Image src={cloudR2} alt={'cloudRight'}/>
                 </motion.div>
                 <motion.div
                     initial={{ left: "-50%" }}
-                    animate={{ left: showSmallCloud ? "0%" : "-50%" }}
+                    animate={{ left: showSmallCloud ? "-5%" : "-50%" }}
                     transition={{
                         delay: 4,
                         duration : 2
                     }}
-                    className={`absolute left-0 bottom-[70%]`}
+                    className={`absolute left-0 bottom-[65%]`}
                 >
                     <Image src={cloudL2} alt={'cloudLeft'}/>
                 </motion.div>

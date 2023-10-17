@@ -1,0 +1,23 @@
+<svg width="87" height="68" viewBox="0 0 87 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" width="4" height="4" fill="black"/>
+<rect y="4" width="4" height="45" fill="black"/>
+<rect x="4" y="4" width="4" height="48" fill="white"/>
+<rect x="4" y="48" width="4" height="4" fill="black"/>
+<mask id="path-5-inside-1_1157_10758" fill="white">
+<path d="M8 0H79V52H8V0Z"/>
+</mask>
+<path d="M8 0H79V52H8V0Z" fill="white"/>
+<path d="M8 4H79V-4H8V4Z" fill="black" mask="url(#path-5-inside-1_1157_10758)"/>
+<rect x="83" y="4" width="4" height="45" fill="black"/>
+<rect x="79" y="4" width="4" height="48" fill="white"/>
+<rect x="79" y="48" width="4" height="4" fill="black"/>
+<rect x="79" width="4" height="4" fill="black"/>
+<rect x="37.5" y="52" width="4" height="29.5" transform="rotate(90 37.5 52)" fill="black"/>
+<rect x="53.5" y="52" width="4" height="12" fill="black"/>
+<rect x="41.5" y="56" width="4" height="4" fill="black"/>
+<rect x="45.5" y="60" width="4" height="4" fill="black"/>
+<rect x="49.5" y="64" width="4" height="4" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.5 52H53.5V56V60V64H49.5V60H45.5V56H41.5V52Z" fill="white"/>
+<rect x="37.5" y="52" width="4" height="4" fill="black"/>
+<rect x="79" y="52" width="4" height="21.5" transform="rotate(90 79 52)" fill="black"/>
+</svg>
