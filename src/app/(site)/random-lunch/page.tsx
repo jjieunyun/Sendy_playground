@@ -4,20 +4,16 @@ import {Suspense} from "react";
 async function getInitStatus() {
     // const res = await fetch(`https://...`, { cache: 'no-store' })
     // const haGroup = await res.json()
-    return false
+    return true
 }
 
 
 export default async function RandomLunchPage() {
     const hasGroup = await getInitStatus()
     
-    if(hasGroup){
-         return <h1>noGroup</h1>
-    }else {
         return (
             <Suspense>
                 <RandomLunchMain hasGroup={hasGroup}/>
             </Suspense>
         )
-    }
 }

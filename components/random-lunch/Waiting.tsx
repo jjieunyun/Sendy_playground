@@ -5,21 +5,16 @@ import Image from "next/image";
 import wheel from '@image/random-lunch/pink-bus_wheel.svg'
 import bus from '@image/random-lunch/pink-bus_body.svg'
 import Person from "@components/random-lunch/Person";
-import {useEffect, useState} from "react";
 import icon from "@image/random-lunch/mdi_dinosaur-pixel.svg"
+import Polygon from '@image/random-lunch/Polygon.svg'
+import useUpDown from "@hooks/useUpDown";
 
 export default function Waiting() {
-    const [marginTop, setMarginTop] = useState('unfold');
+    const {isFold} = useUpDown()
     
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setMarginTop((prevMarginTop) => (prevMarginTop === 'unfold' ? 'fold' : 'unfold'));
-        }, 1000);
-        
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
+    const handleNoLunch = () => {
+        console.log('npono')
+    }
 
     
     return (
@@ -49,12 +44,25 @@ export default function Waiting() {
             </div>
 
             <div className="">
-                <div className={`w-full h-full absolute transition-transform ${marginTop === 'unfold' ? '-mt-4' : '-mt-8'}`}>
+                <div className={`w-full h-full absolute transition-transform ${isFold  ? '-mt-4' : '-mt-8'}`}>
                     <Image src={bus} alt="bus" width={601} className="absolute bottom-84"/>
                 </div>
                 <Image src={wheel} alt="wheel" width={167} className="absolute bottom-22 left-109"/>
+                <div
+                    onClick={handleNoLunch}
+                    className="bg-[#FF83DC] p-16 absolute bottom-170 left-[300px] border-2 border-[#FF0FBC] flex items-center gap-x-23 cursor-pointer">
+                    <div className="flex flex-col">
+                        <span className="">Click!</span>
+                        <span className="text-12">전 오늘 랜덤식사 안합니다만?</span>
+                    </div>
+                   <Image src={Polygon} alt="Polygon"/>
+                </div>
             </div>
             <div className="absolute bottom-20 right-20 flex gap-x-40">
+                <Person name="제인" gender="WOMAN"/>
+                <Person name="디바" gender="WOMAN"/>
+                <Person name="데이크크" gender="MAN"/>
+                <Person name="다이몬도" gender="MAN"/>
                 <Person name="제인" gender="WOMAN"/>
                 <Person name="디바" gender="WOMAN"/>
                 <Person name="데이크크" gender="MAN"/>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import left from "@image/random-lunch/white_cloud_left.svg";
 import right from "@image/random-lunch/white_cloud_right.svg";
 import Waiting from "@components/random-lunch/Waiting";
+import LoadingResult from "@components/random-lunch/LoadingResult";
 
 export default function RandomLunchMain({hasGroup}:{hasGroup:boolean}) {
     
@@ -41,8 +42,9 @@ export default function RandomLunchMain({hasGroup}:{hasGroup:boolean}) {
             </div>
             
             {
-                hasGroup ? <p>결과나옴</p> : <Waiting/>
+                hasGroup ? <LoadingResult/> : <Waiting/>
             }
+            
 
         </main>
     )

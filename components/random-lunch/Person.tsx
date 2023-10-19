@@ -5,19 +5,11 @@ import WHead from '@image/random-lunch/cha-woman-head.svg'
 import MBody from '@image/random-lunch/cha-man-body.svg'
 import MHead from '@image/random-lunch/cha-man-head.svg'
 import Image from "next/image";
+import useUpDown from "@hooks/useUpDown";
 
 export default function Person({name, gender}: { name: string, gender: 'MAN' | 'WOMAN' }) {
-    const [marginTop, setMarginTop] = useState('unfold');
+const {isFold} = useUpDown()
     
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setMarginTop((prevMarginTop) => (prevMarginTop === 'unfold' ? 'fold' : 'unfold'));
-        }, 1000);
-        
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
     
     return (
         <div className="w-full h-full flex flex-col items-center">
@@ -31,12 +23,12 @@ export default function Person({name, gender}: { name: string, gender: 'MAN' | '
             {gender === 'MAN' ? (
                 <div className="flex flex-col items-center justify-end">
                     <Image src={MHead} width="81" alt="WHead" className="z-0" />
-                    <Image src={MBody} width="64" alt="WBody" className={`transition-transform ${marginTop === 'unfold' ? '-mt-4' : '-mt-8'}`} />
+                    <Image src={MBody} width="64" alt="WBody" className={`transition-transform ${isFold ? '-mt-4' : '-mt-8'}`} />
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-end">
                     <Image src={WHead} width="81" alt="WHead" className="z-0" />
-                    <Image src={WBody} width="64" alt="WBody" className={`transition-transform ${marginTop === 'unfold' ? '-mt-16' : '-mt-20'}`} />
+                    <Image src={WBody} width="64" alt="WBody" className={`transition-transform ${isFold ? '-mt-16' : '-mt-20'}`} />
                 </div>
             )}
         </div>
