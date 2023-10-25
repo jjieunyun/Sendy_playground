@@ -5,9 +5,9 @@ import Image from "next/image";
 import bottomBG from '@image/web-BG 1.png'
 import PushButton from "@components/common/PushButton";
 import cloudR1 from '@image/Cloud-R-1.png'
-import cloudR2 from '@image/Cloud-R-2.png'
+import cloudR2 from '@image/cloud-R-2.png'
 import cloudL1 from '@image/Cloud-L-1.png'
-import cloudL2 from '@image/Cloud-L-2.png'
+import cloudL2 from '@image/cloud-L-2.png'
 import {useState, useEffect} from 'react'
 import { motion } from "framer-motion"
 import LoginForm from '@components/login/LoginForm';

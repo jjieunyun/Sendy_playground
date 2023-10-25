@@ -4,7 +4,7 @@ import {Suspense} from "react";
 async function getInitStatus() {
     // const res = await fetch(`https://...`, { cache: 'no-store' })
     // const haGroup = await res.json()
-    return true
+    return false
 }
 
 
