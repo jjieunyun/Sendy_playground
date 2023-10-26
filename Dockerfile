@@ -14,12 +14,12 @@ EXPOSE 3000
 CMD ["npm", "run", "start"]
 
 
-#FROM base AS production
-#COPY package*.json /sendy-playgound/
-#RUN npm ci
-#COPY . /sendy-playgound
-#COPY .env.prod .env.local
-#RUN echo "production"
-#RUN npm run build
-#EXPOSE 3000
-#CMD ["npm", "run", "start"]
+FROM base AS c
+COPY package*.json /sendy-playgound/
+RUN npm ci
+COPY . /sendy-playgound
+COPY .env.prod .env.local
+RUN echo "production"
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "run", "start"]
