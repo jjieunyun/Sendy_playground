@@ -7,16 +7,17 @@ import MHead from '@image/random-lunch/cha-man-head.svg'
 import Image from "next/image";
 import useUpDown from "@hooks/useUpDown";
 
-export default function Person({name, gender, className}: {
+export default function Person({name, gender, className, style}: {
     name: string,
-    gender: 'MAN' | 'WOMAN',
-    className?: string
+    gender: string,
+    className?: string,
+    style?: any
 }) {
     const {isFold} = useUpDown()
 
 
     return (
-        <div className={`w-full h-full flex flex-col items-center ${className}`}>
+        <div className={`w-full h-full flex flex-col items-center ${className}`} style={style}>
             <div className="relative mb-10">
                 <Image src={nameTag} alt="nameTag"/>
                 <span
