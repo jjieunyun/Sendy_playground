@@ -22,7 +22,7 @@ export default function Waiting() {
             <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 "></div>
             <div className="">
                 <Image src={busStop} alt="busStop" height={492} className="absolute right-0 bottom-150"/>
-                <div className="absolute bottom-[528px] right-[286px] overflow-hidden">
+                <div className="absolute bottom-[524px] right-[286px] overflow-hidden bg-black  py-4">
                     <div className="w-[270px] h-32 animate-slider">
                         <div className="w-[1160px] flex">
                             <div className="flex w-[580px] items-center gap-x-20 relative flex-nowrap">

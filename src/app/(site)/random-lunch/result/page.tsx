@@ -1,9 +1,6 @@
 "use client"
 
-import {motion} from "framer-motion";
 import Image from "next/image";
-import left from "@image/random-lunch/white_cloud_left.svg";
-import right from "@image/random-lunch/white_cloud_right.svg";
 import BgClouds from "@components/random-lunch/BgClouds";
 import clover from '@image/random-lunch/clover.svg'
 import IcRyan from '@image/random-lunch/ic_Ryan.svg'
@@ -31,7 +28,7 @@ export default function Result(){
 
 
     return(
-        <main className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover overflow-y-scroll">
+        <main className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover overflow-y-scroll scroll-hidden">
             <BgClouds/>
             <section className={'text-center mt-120 mb-50'}>
                 <p className={'text-black text-40 font-bold mb-18'}>결과</p>
