@@ -14,7 +14,7 @@ EXPOSE 3000
 CMD ["npm", "run", "start"]
 
 
-FROM base AS c
+FROM base AS production
 COPY package*.json /sendy-playgound/
 RUN npm ci
 COPY . /sendy-playgound
