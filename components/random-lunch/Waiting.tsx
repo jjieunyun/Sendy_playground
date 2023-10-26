@@ -22,7 +22,7 @@ export default function Waiting() {
             <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 "></div>
             <div className="">
                 <Image src={busStop} alt="busStop" height={492} className="absolute right-0 bottom-150"/>
-                <div className="absolute bottom-[528px] right-[286px] overflow-hidden">
+                <div className="absolute bottom-[524px] right-[286px] overflow-hidden bg-black  py-4">
                     <div className="w-[270px] h-32 animate-slider">
                         <div className="w-[1160px] flex">
                             <div className="flex w-[580px] items-center gap-x-20 relative flex-nowrap">
@@ -41,6 +41,11 @@ export default function Waiting() {
 
                     </div>
                 </div>
+                <div className={'bg-white h-154 w-112 absolute right-[530px] bottom-[320px] border-1 border-sp_green text-black text-center pt-16 flex flex-col'}>
+                    <span className={'text-18 h-18 mb-6'}>10월</span>
+                    <span className={'text-48 h-48 mb-6'}>24</span>
+                    <span className={'text-32 h-32'}>(화)</span>
+                </div>
             </div>
 
             <div className="">
@@ -58,7 +63,7 @@ export default function Waiting() {
                    <Image src={Polygon} alt="Polygon"/>
                 </div>
             </div>
-            <div className="absolute bottom-20 right-20 flex gap-x-40">
+            <div className="absolute bottom-60 right-20 flex gap-x-40">
                 <Person name="제인" gender="WOMAN"/>
                 <Person name="디바" gender="WOMAN"/>
                 <Person name="데이크크" gender="MAN"/>

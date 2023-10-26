@@ -33,7 +33,7 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: sendy-play-ground           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: next-js-playground         # set this to your Amazon ECR repository name
         # set this to the name of the container in the
                                                         # containerDefinitions section of your task definition
 
@@ -78,7 +78,7 @@ jobs:
       with:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
-        target: local
+        target: production
         build-args: |
           API_KEY=${{ env.API_KEY }}
         cache-from: type=gha
