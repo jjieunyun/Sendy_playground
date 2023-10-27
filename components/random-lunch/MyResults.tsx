@@ -111,7 +111,7 @@ export default function MyResults() {
             </article>
 
 
-            <article className={'absolute bottom-30 right-30'}>
+            <article className={'absolute bottom-30 right-30 flex flex-col items-end'}>
                 <p className={'text-black text-36 font-400 -mb-4' } style={textStyle}>Click!!</p>
                 <div
                     onClick={onClick}
