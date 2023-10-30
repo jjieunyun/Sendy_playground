@@ -88,14 +88,22 @@ const Auth: NextPage = () => {
                     {
                         currentTab === '참여자' && (
                             <div className="w-full h-full z-20">
-                                <LoginForm handleTabChange={handleTabChange}/>
+                                <LoginForm handleTabChange={handleTabChange} title={currentTab}/>
                             </div>
                         )
                     }
                     {
+                        currentTab === '관리자' && (
+                            <div className="w-full h-full z-20">
+                                <LoginForm handleTabChange={handleTabChange} title={currentTab}/>
+                            </div>
+                        )
+
+                    }
+                    {
                         !currentTab && (
                             <div className="flex w-full gap-x-24 justify-center">
-                                <PushButton label={'관리자용'} theme={'pink'} onClick={()=>handleTabChange(null)}/>
+                                <PushButton label={'관리자용'} theme={'pink'} onClick={()=>handleTabChange('관리자')}/>
                                 <PushButton label={'참여자용'} theme={'green'} onClick={()=>handleTabChange('참여자')}/>
                             </div>
                         )
