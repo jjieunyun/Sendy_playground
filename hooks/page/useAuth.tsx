@@ -27,7 +27,7 @@ export default function useAuth() {
             error: undefined,
         }));
       const res =  await apiClientHandler(onUserSignIn({id: data.accessId, password: data.password}))
-          if(res.result){
+          if(res?.result){
               setAuthState((prev) => ({...prev, isLogin: true, loading: false}))
               getUserInfo()
                 router.push('/main')

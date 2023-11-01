@@ -20,7 +20,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         }
         
         return NextResponse.json({
-            data: response.data.data.dta,
+            data: response.data.data.data,
         }, {status: 200});
         
     } catch (error) {

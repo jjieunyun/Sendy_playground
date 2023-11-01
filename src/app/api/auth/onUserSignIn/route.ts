@@ -10,8 +10,8 @@ export async function POST(req: NextRequest, res:NextResponse) {
     
     try {
         const response = await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/login`, requestBody)
-        
         if (response.data.result) {
+            console.log(response.data)
             const {sessionToken: {token}} = response.data.data;
 
             cookies().set('token', token, cookieOptions);

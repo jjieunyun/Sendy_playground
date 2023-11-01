@@ -86,14 +86,7 @@ const Auth: NextPage = () => {
                     onAnimationComplete={handleBigCloud}
                 >
                     {
-                        currentTab === '참여자' && (
-                            <div className="w-full h-full z-20">
-                                <LoginForm handleTabChange={handleTabChange} title={currentTab}/>
-                            </div>
-                        )
-                    }
-                    {
-                        currentTab === '관리자' && (
+                        currentTab && (
                             <div className="w-full h-full z-20">
                                 <LoginForm handleTabChange={handleTabChange} title={currentTab}/>
                             </div>

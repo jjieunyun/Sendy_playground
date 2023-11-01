@@ -8,6 +8,6 @@ export function onUserSignOut() {
     return Axios.post('/api/auth/onUserSignIn')
 }
 
-export function validateSession() {
-    return Axios.get('/api/auth/validateSession')
-}
+// export function validateSession() {
+//     return Axios.get('/api/auth/validateSession')
+// }
