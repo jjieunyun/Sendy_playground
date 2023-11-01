@@ -17,7 +17,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "framer-motion": "^10.16.4",
-    "iron-session": "^6.3.1",
+    "iron-session": "github:renchris/iron-session#v8-as-dependency",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "react": "18.2.0",
