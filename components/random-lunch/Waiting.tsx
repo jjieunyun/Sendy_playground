@@ -8,6 +8,7 @@ import Person from "@components/random-lunch/Person";
 import icon from "@image/random-lunch/mdi_dinosaur-pixel.svg"
 import Polygon from '@image/random-lunch/Polygon.svg'
 import useUpDown from "@hooks/useUpDown";
+import container from '@image/random-lunch/container.svg'
 
 export default function Waiting() {
     const {isFold} = useUpDown()
@@ -49,6 +50,7 @@ export default function Waiting() {
             </div>
 
             <div className="">
+                {/*<Image src={container} alt={'container'} className={'absolute'}/>*/}
                 <div className={`w-full h-full absolute transition-transform ${isFold  ? '-mt-4' : '-mt-8'}`}>
                     <Image src={bus} alt="bus" width={601} className="absolute bottom-84"/>
                 </div>

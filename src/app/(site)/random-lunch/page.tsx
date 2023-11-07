@@ -17,7 +17,8 @@ type Category = 'PRODUCT' | 'SEOBON' | 'ALL'
 
 
 export default function RandomLunchPage() {
-    const [currentStep, setCurrentStep] = useState<CurrentStep>('BEFORE')
+    // const [currentStep, setCurrentStep] = useState<CurrentStep>('BEFORE')
+    const [currentStep, setCurrentStep] = useState<CurrentStep>('AFTER')
     const [hasGroup, setHasGroup] = useState<boolean>(false)
 
     const handleResultStatus = async ({category}: { category: Category }) => {

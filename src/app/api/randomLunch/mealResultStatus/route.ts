@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from 'next/server'
 import {cookies} from 'next/headers';
-import Axios from "axios/index";
+import Axios from "axios";
 
 export async function GET(req: NextRequest, res: NextResponse) {
     const token = String(cookies().get('token'))
