@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {useRouter} from  "next/navigation";
 import {ContextState, useUserContext} from "@context/UserContext";
-import Axios from "axios";
 import apiClientHandler from "@lib/apiClientHandler";
+import {onUserSignOut,onUserSignIn} from "../../api/Auth";
 
 interface AuthState {
     loading: boolean;
@@ -20,28 +20,26 @@ export default function useAuth() {
     const router = useRouter()
 
 
-    function onUserLogin({data}: { data: any }) {
+    const onUserLogin = async({data}: { data: any }) => {
         setAuthState(() => ({
             loading: false,
             isLogin: false,
             error: undefined,
         }));
-        Axios.post('/api/users/login', data)
-            .then((res) => {
-                setAuthState((prev) => ({...prev, isLogin: true, loading: false}))
-                getUserInfo()
-            })
-            .then(() => {
-                router.push('/dashboard')
-            })
-            .catch((error) => {
-                setAuthState((prev) => ({...prev, error: error.response.data.message}))
-            });
+      const res =  await apiClientHandler(onUserSignIn({id: data.accessId, password: data.password}))
+          if(res?.result){
+              setAuthState((prev) => ({...prev, isLogin: true, loading: false}))
+              getUserInfo()
+                router.push('/main')
+          }else {
+              alert(res.message)
+              setAuthState((prev) => ({...prev, error: res.message, loading: false}))
+          }
     }
 
 
-    function onUserLogout(): Promise<void> {
-        return apiClientHandler(Axios.get('/api/users/logout')).then(() => setUserInfo({
+    const onUserLogout = async(): Promise<void> => {
+        return await apiClientHandler(onUserSignOut()).then(() => setUserInfo({
             id: undefined,
             name: undefined,
             permission: undefined,
