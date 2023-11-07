@@ -1,0 +1,23 @@
+<svg width="476" height="88" viewBox="0 0 476 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" width="4" height="5.75281" fill="black"/>
+<rect y="2.96606" width="4" height="64.7191" fill="black"/>
+<rect x="4" y="5.79761" width="4" height="60.4045" fill="#639BFF"/>
+<rect x="4" y="66.2473" width="4" height="5.75281" fill="black"/>
+<mask id="path-5-inside-1_1576_8558" fill="white">
+<path d="M8 0H468V72H8V0Z"/>
+</mask>
+<path d="M8 0H468V72H8V0Z" fill="#639BFF"/>
+<path d="M8 4H468V-4H8V4Z" fill="black" mask="url(#path-5-inside-1_1576_8558)"/>
+<rect x="472" y="5.53833" width="4" height="62.3077" fill="black"/>
+<rect x="468" y="5.53833" width="4" height="66.4615" fill="#639BFF"/>
+<rect x="468" y="66.4617" width="4" height="5.53846" fill="black"/>
+<rect x="468" width="4" height="5.53846" fill="black"/>
+<rect width="4" height="224" transform="matrix(4.37114e-08 1 1 -4.37114e-08 244 72)" fill="black"/>
+<rect width="4" height="12" transform="matrix(-1 0 0 1 228 72)" fill="black"/>
+<rect width="4" height="4" transform="matrix(-1 0 0 1 240 76)" fill="black"/>
+<rect width="4" height="4" transform="matrix(-1 0 0 1 236 80)" fill="black"/>
+<rect width="4" height="4" transform="matrix(-1 0 0 1 232 84)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M240 72H228V76V80V84H232V80H236V76H240V72Z" fill="#639BFF"/>
+<rect width="4" height="4" transform="matrix(-1 0 0 1 244 72)" fill="black"/>
+<rect width="4" height="216" transform="matrix(4.37114e-08 1 1 -4.37114e-08 8 72)" fill="black"/>
+</svg>

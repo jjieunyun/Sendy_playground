@@ -10,7 +10,7 @@ export default function MainLayout ({children}: { children: React.ReactNode}) {
     })
 
     // const getUserInfo = async (): Promise<void> => {
-    //     const res = await apiClientHandler(Axios.get('/api/users/getUserInfo'))
+    //     const res = await apiClientHandler(Axios.get('/api/auth/getUserInfo'))
     //     if (res.result) {
     //         const {id, name, permission, token} = res.data
     //         _setUserInfo({id, name, permission, token})
