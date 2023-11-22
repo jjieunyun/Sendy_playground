@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import close from '@image/close.svg'
 import {v4 as uuidv4} from "uuid"
 import logout from '@image/logout.svg'
+import apiClientHandler from "@lib/apiClientHandler";
+import useAuth from "@hooks/page/useAuth";
 
 const menuData = [
     {
@@ -33,6 +35,7 @@ const menuData = [
 
 export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
     const router = useRouter()
+    const {onUserLogout} = useAuth()
     
     const goToAccount = () => {
         router.push('/my-account')
@@ -42,6 +45,10 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
     const goToPage = (path:string) => {
         router.push(path)
         closeSidebar()
+    }
+    
+    const handleSignOut = () => {
+        onUserLogout()
     }
     
     return(
@@ -77,7 +84,7 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
                         }
                     </article>
                 </div>
-                <div className="w-full flex justify-end" onClick={()=> router.push('/')}>
+                <div className="w-full flex justify-end" onClick={handleSignOut}>
                     <Image src={logout} alt="logout" className="mr-24 cursor-pointer"/>
                 </div>
             </div>

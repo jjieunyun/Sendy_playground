@@ -1,4 +1,4 @@
-import LoginInput from "@components/login/LoginInput";
+import CustomInput from "@components/login/CustomInput";
 import PushButton from "@components/common/PushButton";
 import {useRouter} from "next/navigation";
 import useAuth from "@hooks/page/useAuth";
@@ -48,11 +48,11 @@ export default function LoginForm({handleTabChange, title}: {
                 onSubmit={handleSubmit(onSubmit, onInvalid)}>
                 <section className={'flex flex-col z-10 w-464 gap-y-24'}>
                     
-                    <LoginInput label={'아이디'} theme={title === '관리자' ? 'pink' : 'green'} isError={errors?.accessId?.type === 'required'}
-                                register={register("accessId", {required: true,})}/>
-                    <LoginInput label={'비밀번호'} theme={title === '관리자' ? 'pink' : 'green'} type="password"
-                                isError={errors?.password?.type === 'required'}
-                                register={register("password", {required: true,})}/>
+                    <CustomInput label={'아이디'} theme={title === '관리자' ? 'pink' : 'green'} isError={errors?.accessId?.type === 'required'}
+                                 register={register("accessId", {required: true,})}/>
+                    <CustomInput label={'비밀번호'} theme={title === '관리자' ? 'pink' : 'green'} type="password"
+                                 isError={errors?.password?.type === 'required'}
+                                 register={register("password", {required: true,})}/>
                 
                 </section>
                 <section className="flex mt-36 w-464 justify-between">
