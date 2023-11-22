@@ -13,22 +13,23 @@ import apiClientHandler from "@lib/apiClientHandler";
 import {getMealResultStatus} from "../../../../api/RandomLunch";
 
 type CurrentStep = 'BEFORE' | 'AFTER'
-type Category = 'PRODUCT' | 'SEOBON' | 'ALL'
+type Category = 'PRODUCT' | 'SERVICE' | 'ALL'
 
 
 export default function RandomLunchPage() {
     // const [currentStep, setCurrentStep] = useState<CurrentStep>('BEFORE')
-    const [currentStep, setCurrentStep] = useState<CurrentStep>('AFTER')
+    const [currentStep, setCurrentStep] = useState<CurrentStep>('BEFORE')
     const [hasGroup, setHasGroup] = useState<boolean>(false)
 
     const handleResultStatus = async ({category}: { category: Category }) => {
         const res = await apiClientHandler(getMealResultStatus({category}))
-        if (res.result) {
-            //결과를 hasGroup에 저장
-            setCurrentStep('AFTER')
-        } else {
-            alert('랜덤 랜식 결과를 확인 할 수없습니다.')
-        }
+        console.log(res)
+        // if (res.result) {
+        //     //결과를 hasGroup에 저장
+        //     setCurrentStep('AFTER')
+        // } else {
+        //     alert('랜덤 랜식 결과를 확인 할 수없습니다.')
+        // }
     }
 
 
@@ -51,10 +52,10 @@ export default function RandomLunchPage() {
                             </div>
 
                             <div className="absolute z-1 bottom-[280px] flex items-start flex-col left-[560px]">
-                                <Image src={num2} alt="num1" onClick={() => handleResultStatus({category: 'SEOBON'})}
+                                <Image src={num2} alt="num1" onClick={() => handleResultStatus({category: 'SERVICE'})}
                                        className={'cursor-pointer'}/>
                                 <p className="text-32 text-black cursor-pointer"
-                                   onClick={() => handleResultStatus({category: 'SEOBON'})}>서본 랜식 (화)</p>
+                                   onClick={() => handleResultStatus({category: 'SERVICE'})}>서본 랜식 (화)</p>
                             </div>
 
                             <div className="absolute z-1 top-[350px] left-[550px] flex items-center flex-col">

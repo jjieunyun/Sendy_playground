@@ -24,13 +24,13 @@ export function UserContextProvider({children, userState}:{children:React.ReactN
     });
 
     const getUserInfo = async (): Promise<void> => {
-        const res = await apiClientHandler(Axios.get('/api/users/getUserInfo'))
-        if (res.result) {
-            const {id, name, permission, token} = res.data
-            setUserInfo({id, name, permission})
-        } else {
-            setUserInfo({id: undefined, name: undefined, permission: undefined})
-        }
+        // const res = await apiClientHandler(Axios.get('/api/users/getUserInfo'))
+        // if (res.data.data.result) {
+        //     const {id, name, permission, token} = res.data
+        //     setUserInfo({id, name, permission})
+        // } else {
+        //     setUserInfo({id: undefined, name: undefined, permission: undefined})
+        // }
     }
 
     useEffect(() => {
