@@ -12,6 +12,14 @@ body {
     color: #fff;
 }
 
+.main_item_hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.main_item_hover:hover {
+    transform: scale(1.03);
+}
+
 /*animation class*/
 .scroll-hidden::-webkit-scrollbar {
     display: none;

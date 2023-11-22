@@ -8,7 +8,7 @@ import Person from "@components/random-lunch/Person";
 import icon from "@image/random-lunch/mdi_dinosaur-pixel.svg"
 import Polygon from '@image/random-lunch/Polygon.svg'
 import useUpDown from "@hooks/useUpDown";
-import container from '@image/random-lunch/container.svg'
+import bubble from '@image/random-lunch/speech_bubble.svg'
 
 export default function Waiting() {
     const {isFold} = useUpDown()
@@ -23,23 +23,22 @@ export default function Waiting() {
             <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 "></div>
             <div className="">
                 <Image src={busStop} alt="busStop" height={492} className="absolute right-0 bottom-150"/>
-                <div className="absolute bottom-[524px] right-[286px] overflow-hidden bg-black  py-4">
+                <div className="absolute bottom-[527px] right-[286px] overflow-hidden py-4">
                     <div className="w-[270px] h-32 animate-slider">
-                        <div className="w-[1160px] flex">
-                            <div className="flex w-[580px] items-center gap-x-20 relative flex-nowrap">
-                                <p> 화요일 오전 11시에 출발합니다.</p>
+                        <div className="w-[1540px] flex text-24">
+                            <div className="flex w-[770px] items-center gap-x-20 relative flex-nowrap">
+                                <p>안먹는 사람 현재 <span className={'text-sp_pink text-26'}>5명</span> 입니다.</p>
                                 <Image src={icon} alt="icon"/>
-                                <p> 안누르면 그냥 드셔야합니다.</p>
+                                <p>안먹는 사람 현재 <span className={'text-sp_pink text-26'}>5명</span> 입니다.</p>
                                 <Image src={icon} alt="icon"/>
                             </div>
-                            <div className="flex w-[580px] items-center gap-x-20 relative flex-nowrap">
-                                <p> 화요일 오전 11시에 출발합니다.</p>
+                            <div className="flex w-[770px] items-center gap-x-20 relative flex-nowrap">
+                                <p>안먹는 사람 현재 <span className={'text-sp_pink text-26'}>5명 </span>입니다.</p>
                                 <Image src={icon} alt="icon"/>
-                                <p> 안누르면 그냥 드셔야합니다.</p>
+                                <p>안먹는 사람 현재 <span className={'text-sp_pink text-26'}>5명</span> 입니다.</p>
                                 <Image src={icon} alt="icon"/>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className={'bg-white h-154 w-112 absolute right-[530px] bottom-[320px] border-1 border-sp_green text-black text-center pt-16 flex flex-col'}>
@@ -50,7 +49,11 @@ export default function Waiting() {
             </div>
 
             <div className="">
-                {/*<Image src={container} alt={'container'} className={'absolute'}/>*/}
+                <div>
+                    <Image src={bubble} alt={'container'} className={'absolute bottom-[490px] left-120'}/>
+                    <p className={'absolute bottom-[520px] left-150 text-black text-24'}>11월 1일 화요일 오전 11시 출발합니다.</p>
+                </div>
+
                 <div className={`w-full h-full absolute transition-transform ${isFold  ? '-mt-4' : '-mt-8'}`}>
                     <Image src={bus} alt="bus" width={601} className="absolute bottom-84"/>
                 </div>

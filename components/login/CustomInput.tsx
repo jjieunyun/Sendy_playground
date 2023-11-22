@@ -1,13 +1,14 @@
-export default function LoginInput({label, type = 'text', theme, register, isError}: {
+export default function CustomInput({label, type = 'text', theme, register, isError, labelColor = 'white'}: {
     label: string,
     type?: string,
     theme: any,
     register: any,
-    isError?: boolean
+    isError?: boolean,
+    labelColor?: 'white' | 'black'
 }) {
     return (
-        <article className={'w-full'}>
-            <p className={`${isError? 'text-[#e73333]':'text-white'} mb-8`}>{label}</p>
+        <article className={`w-full`}>
+            <p className={`${isError? 'text-[#e73333]': labelColor === 'black' ? 'text-black' :'text-white'} mb-8`}>{label}</p>
             <div className={`w-full border-1 ${theme === 'green' ? 'border-sp_green' : 'border-sp_pink'}`}>
                 <input
                     {...register}

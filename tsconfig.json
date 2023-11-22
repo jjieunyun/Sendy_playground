@@ -44,6 +44,9 @@
       ],
       "@style/*" : [
         "./style/*"
+      ],
+      "@api/*" : [
+        "./api/*"
       ]
     },
     "moduleResolution": "node",
