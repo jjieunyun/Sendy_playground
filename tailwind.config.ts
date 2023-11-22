@@ -48,7 +48,7 @@ module.exports = {
                         transform: 'translateX(0px)'
                     },
                     '100%': {
-                        transform: 'translateX(-580px)'
+                        transform: 'translateX(-770px)'
                     }
                 },
             },

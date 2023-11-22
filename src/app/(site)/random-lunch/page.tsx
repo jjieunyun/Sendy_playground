@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import BgClouds from "@components/random-lunch/BgClouds";
 import Image from "next/image";
 import sign from "@image/random-lunch/sign.svg";
@@ -10,25 +10,29 @@ import num3 from "@image/random-lunch/num3.svg";
 import MyResults from "@components/random-lunch/MyResults";
 import Waiting from "@components/random-lunch/Waiting";
 import apiClientHandler from "@lib/apiClientHandler";
-import {getMealResultStatus} from "../../../../api/RandomLunch";
+import {getMealResultStatus} from "@api/RandomLunch";
+import useToast from "@hooks/useToast";
+import ToastPopup from "@components/common/ToastPopup";
+import info from '@image/random-lunch/octagon.svg'
+import ToastMessage from "@components/common/ToastMessage";
 
 type CurrentStep = 'BEFORE' | 'AFTER'
 type Category = 'PRODUCT' | 'SERVICE' | 'ALL'
 
 
 export default function RandomLunchPage() {
-    // const [currentStep, setCurrentStep] = useState<CurrentStep>('BEFORE')
     const [currentStep, setCurrentStep] = useState<CurrentStep>('BEFORE')
     const [hasGroup, setHasGroup] = useState<boolean>(false)
+    const { isToastVisible, message, showToast, hideToast } = useToast();
 
     const handleResultStatus = async ({category}: { category: Category }) => {
-        const res = await apiClientHandler(getMealResultStatus({category}))
-        console.log(res)
+        // const res = await apiClientHandler(getMealResultStatus({category}))
         // if (res.result) {
         //     //결과를 hasGroup에 저장
         //     setCurrentStep('AFTER')
+        //     res.data.isCreated ? setHasGroup(true) : setHasGroup(false)
         // } else {
-        //     alert('랜덤 랜식 결과를 확인 할 수없습니다.')
+        //     alert('랜덤 랜식 결과를 확인 할 수없습니다. 다엘 또는 제인에게 문의주세요!')
         // }
     }
 
@@ -65,6 +69,11 @@ export default function RandomLunchPage() {
                                    onClick={() => handleResultStatus({category: 'ALL'})}>전체 랜식 (금)</p>
                             </div>
                         </div>
+                        <ToastPopup
+                            message={<ToastMessage message={'허거덩! 당신은 제품팀이라 입장이 불가합니다.'}/>}
+                            isVisible={isToastVisible}
+                            onClose={hideToast}
+                        />
                     </div>
                 )
             }
@@ -76,3 +85,4 @@ export default function RandomLunchPage() {
         </main>
     )
 }
+
