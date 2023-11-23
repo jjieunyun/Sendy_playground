@@ -34,8 +34,8 @@ on:
 env:
   AWS_REGION: ap-northeast-2                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: next-js-playground         # set this to your Amazon ECR repository name
-        # set this to the name of the container in the
-                                                        # containerDefinitions section of your task definition
+    # set this to the name of the container in the
+  # containerDefinitions section of your task definition
 
 permissions:
   contents: read
@@ -61,15 +61,24 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Amazon ECR
+<<<<<<< HEAD
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+=======
+        id: onUserSignIn-ecr
+        uses: aws-actions/amazon-ecr-onUserSignIn@v1
+>>>>>>> API
 
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: |
+<<<<<<< HEAD
             name=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
+=======
+            name=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY}}
+>>>>>>> API
           tags: |
             type=sha,prefix={{branch}}-
 
@@ -77,18 +86,31 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
+<<<<<<< HEAD
           tags: 252458297036.dkr.ecr.ap-northeast-2.amazonaws.com/core-playground:${{ github.sha }}
+=======
+          tags: ${{ steps.meta.outputs.tags }}
+          target: production
+>>>>>>> API
           build-args: |
             API_KEY=${{ env.API_KEY }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> API
       - name: Install yq
         run: sudo snap install yq
 
       - name: Update image tag in the deployment file
         run: |
+<<<<<<< HEAD
           yq e ".spec.template.spec.containers[0].image = \"${{ steps.login-ecr.outputs.registry }}/core-playground:${{ github.sha }}\"" -i server-deployment.yml
+=======
+          yq e ".spec.template.spec.containers[0].image = \"${{ steps.meta.outputs.tags }}\"" -i next-deployment.yml
+>>>>>>> API
 
       - name: Set up Kubeconfig
         run: |
@@ -96,5 +118,10 @@ jobs:
 
       - name: Deploy to EKS
         run: |
+<<<<<<< HEAD
           kubectl apply -f server-deployment.yml
           kubectl apply -f server-service.yml
+=======
+          kubectl apply -f next-deployment.yml
+          kubectl apply -f next-service.yml
+>>>>>>> API
