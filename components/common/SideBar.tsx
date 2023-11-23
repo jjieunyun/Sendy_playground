@@ -8,6 +8,8 @@ import {v4 as uuidv4} from "uuid"
 import logout from '@image/logout.svg'
 import apiClientHandler from "@lib/apiClientHandler";
 import useAuth from "@hooks/page/useAuth";
+import {UserContext, useUserContext} from "@context/UserContext";
+import {useContext} from "react";
 
 const menuData = [
     {
@@ -36,7 +38,10 @@ const menuData = [
 export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
     const router = useRouter()
     const {onUserLogout} = useAuth()
-    
+    const userInfo = useUserContext()?.userInfo;
+
+
+
     const goToAccount = () => {
         router.push('/my-account')
         closeSidebar()
@@ -63,7 +68,7 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
                             <div className="w-80 h-80 bg-sp_pink rounded-full"></div>
                             <div>
                                 <span className="text-24">hello! </span>
-                                <span className="text-32 text-sp_pink">Rooney</span>
+                                <span className="text-32 text-sp_pink">{userInfo?.userName}</span>
                             </div>
                         </div>
                         <Image src={setting} alt="setting" onClick={goToAccount} className="cursor-pointer"/>
@@ -76,7 +81,7 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
                                          onClick={()=>goToPage(item.path)}>
                                         <span className="text-24">{item.title}</span>
                                         {
-                                            item.title === '경품추첨' && <Image src={iconNew} alt="iconNew" className="ml-8"/>
+                                            item.title === '랜덤식사' && <Image src={iconNew} alt="iconNew" className="ml-8"/>
                                         }
                                     </div>
                                 )
