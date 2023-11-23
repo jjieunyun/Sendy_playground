@@ -61,8 +61,8 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Amazon ECR
-        id: onUserSignIn-ecr
-        uses: aws-actions/amazon-ecr-onUserSignIn@v1
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
       - name: Docker meta
         id: meta
@@ -84,14 +84,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-
       - name: Install yq
         run: sudo snap install yq
 
       - name: Update image tag in the deployment file
         run: |
           yq e ".spec.template.spec.containers[0].image = \"${{ steps.meta.outputs.tags }}\"" -i next-deployment.yml
-
       - name: Set up Kubeconfig
         run: |
           aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name eks-playground
@@ -100,3 +98,4 @@ jobs:
         run: |
           kubectl apply -f next-deployment.yml
           kubectl apply -f next-service.yml
+
