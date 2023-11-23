@@ -1,12 +1,20 @@
 import {NextResponse} from 'next/server'
 import {cookies} from 'next/headers';
+import Axios from "axios";
 
 export async function GET() {
-  const cookie = cookies().get('userInfo') || null;
+  const token = cookies().get('sp_token')?.value || '';
 
-  if(cookie){
-    const userInfo = JSON.parse(cookie?.value || '')
-    return NextResponse.json({result: true, data: userInfo})
+  try {
+    const response = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/profile`, {
+      headers: {
+        Authorization:token,
+      }
+    });
+
+    return NextResponse.json({data: response.data}, {status: 200});
+
+  } catch (error) {
+    return NextResponse.json({error: 'Internal Server Error'}, {status: 500});
   }
-  return NextResponse.json({result: false, data: null})
 }

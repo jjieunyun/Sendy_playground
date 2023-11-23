@@ -1,28 +1,32 @@
 "use client"
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import {UserContextProvider, UserState} from "@context/UserContext";
+import apiClientHandler from "@lib/apiClientHandler";
+import { usePathname } from 'next/navigation'
+import {getUserInfo} from "@api/Auth"
 
 export default function MainLayout ({children}: { children: React.ReactNode}) {
     const [_userInfo, _setUserInfo] = useState<UserState>({
         id: undefined,
-        name: undefined,
-        permission: undefined,
+        userName: undefined,
+        teamId: undefined,
     })
+    const path = usePathname()
 
-    // const getUserInfo = async (): Promise<void> => {
-    //     const res = await apiClientHandler(Axios.get('/api/auth/getUserInfo'))
-    //     if (res.result) {
-    //         const {id, name, permission, token} = res.data
-    //         _setUserInfo({id, name, permission, token})
-    //     } else {
-    //         _setUserInfo({id: undefined, name: undefined, permission: undefined, token: undefined})
-    //     }
-    // }
-    //
-    // useEffect(() => {
-    //     if (router.pathname === '/') return
-    //     getUserInfo()
-    // }, [])
+    const fetchUserInfo = async (): Promise<void> => {
+        const res = await apiClientHandler(getUserInfo())
+
+        if(res.result){
+            const {teamId, userName, id} = res.data
+            _setUserInfo({id, teamId, userName})
+        }
+    }
+
+
+    useEffect(() => {
+        if (path === '/') return
+        fetchUserInfo()
+    }, [])
 
 
     return (

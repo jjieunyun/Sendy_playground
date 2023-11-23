@@ -17,7 +17,7 @@ export default function useAuth() {
         isLogin: false,
         error: undefined,
     });
-    const {setUserInfo, getUserInfo} = useUserContext() as ContextState
+    const {setUserInfo} = useUserContext() as ContextState
     const router = useRouter()
     
     
@@ -30,16 +30,13 @@ export default function useAuth() {
         
         try {
             const res = await Axios.post('/api/auth/onUserSignIn', {accessId: data.accessId, password: data.password});
-            // 성공적인 로그인 처리
             if (res.data.data.result) {
                 setAuthState((prev) => ({...prev, isLogin: true, loading: false}));
-                getUserInfo();
                 router.push('/main');
             } else {
                 setAuthState((prev) => ({...prev, error: res.data.data.message, loading: false}));
             }
         } catch (error) {
-            // 오류 처리
             console.error("Login error:", error);
             alert("로그인 중 오류가 발생했습니다.");
             setAuthState({isLogin:false, error: undefined, loading: false});
@@ -53,8 +50,8 @@ export default function useAuth() {
         if(res.result){
             setUserInfo({
                     id: undefined,
-                    name: undefined,
-                    permission: undefined
+                    userName: undefined,
+                    teamId: undefined
             })
             router.replace('/')
         }else {
@@ -66,5 +63,5 @@ export default function useAuth() {
         setAuthState((prev) => ({...prev, ...newState}));
     }
 
-    return {onUserLogin, onUpdateState, authState, getUserInfo, onUserLogout};
+    return {onUserLogin, onUpdateState, authState, onUserLogout};
 }
