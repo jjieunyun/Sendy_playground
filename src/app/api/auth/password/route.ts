@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const token = cookies().get('sp_token')?.value || '';
 
     try {
-        const response = await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/password/update`, requestBody, {
+        const response = await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/password/update`, requestBody, {
             headers: {
                 Authorization: token,
             }
@@ -20,4 +20,3 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({error: 'Internal Server Error'}, {status: 500});
     }
 }
-

@@ -3,7 +3,7 @@ import React, {useEffect, useState, createContext, useContext} from 'react';
 export interface UserState {
     id: number | undefined;
     userName: string | undefined;
-    teamId: number | undefined;
+    teamName: string | undefined;
 }
 
 export interface ContextState {
@@ -17,7 +17,7 @@ export function UserContextProvider({children, userState}:{children:React.ReactN
     const [userInfo, setUserInfo] = useState<UserState | null>({
         id: undefined,
         userName: undefined,
-        teamId: undefined,
+        teamName: undefined,
     });
 
 

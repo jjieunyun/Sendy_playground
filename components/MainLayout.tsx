@@ -9,7 +9,7 @@ export default function MainLayout ({children}: { children: React.ReactNode}) {
     const [_userInfo, _setUserInfo] = useState<UserState>({
         id: undefined,
         userName: undefined,
-        teamId: undefined,
+        teamName: undefined,
     })
     const path = usePathname()
 
@@ -17,8 +17,8 @@ export default function MainLayout ({children}: { children: React.ReactNode}) {
         const res = await apiClientHandler(getUserInfo())
 
         if(res.result){
-            const {teamId, userName, id} = res.data
-            _setUserInfo({id, teamId, userName})
+            const {teamName, userName, userId} = res.data
+            _setUserInfo({id: userId, teamName, userName})
         }
     }
 

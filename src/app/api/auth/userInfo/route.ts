@@ -6,7 +6,7 @@ export async function GET() {
   const token = cookies().get('sp_token')?.value || '';
 
   try {
-    const response = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/profile`, {
+    const response = await Axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user`, {
       headers: {
         Authorization:token,
       }

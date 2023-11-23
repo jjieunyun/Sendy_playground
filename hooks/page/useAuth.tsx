@@ -51,7 +51,7 @@ export default function useAuth() {
             setUserInfo({
                     id: undefined,
                     userName: undefined,
-                    teamId: undefined
+                    teamName: undefined
             })
             router.replace('/')
         }else {
