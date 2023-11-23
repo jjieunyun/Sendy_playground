@@ -34,8 +34,8 @@ on:
 env:
   AWS_REGION: ap-northeast-2                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: next-js-playground         # set this to your Amazon ECR repository name
-        # set this to the name of the container in the
-                                                        # containerDefinitions section of your task definition
+    # set this to the name of the container in the
+  # containerDefinitions section of your task definition
 
 permissions:
   contents: read
@@ -47,56 +47,56 @@ jobs:
     environment: production
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
-        aws-region: ${{ env.AWS_REGION }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
+          aws-region: ${{ env.AWS_REGION }}
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Login to Amazon ECR
-      id: onUserSignIn-ecr
-      uses: aws-actions/amazon-ecr-onUserSignIn@v1
+      - name: Login to Amazon ECR
+        id: onUserSignIn-ecr
+        uses: aws-actions/amazon-ecr-onUserSignIn@v1
 
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v4
-      with:
-        images: |
-          name=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY}}
-        tags: |
-          type=sha,prefix={{branch}}-
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            name=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY}}
+          tags: |
+            type=sha,prefix={{branch}}-
 
-    - name: Build and push
-      uses: docker/build-push-action@v4
-      with:
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        target: production
-        build-args: |
-          API_KEY=${{ env.API_KEY }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          target: production
+          build-args: |
+            API_KEY=${{ env.API_KEY }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
 
-    - name: Install yq
-      run: sudo snap install yq
+      - name: Install yq
+        run: sudo snap install yq
 
-    - name: Update image tag in the deployment file
-      run: |
-        yq e ".spec.template.spec.containers[0].image = \"${{ steps.meta.outputs.tags }}\"" -i next-deployment.yml
+      - name: Update image tag in the deployment file
+        run: |
+          yq e ".spec.template.spec.containers[0].image = \"${{ steps.meta.outputs.tags }}\"" -i next-deployment.yml
 
-    - name: Set up Kubeconfig
-      run: |
-        aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name eks-playground
+      - name: Set up Kubeconfig
+        run: |
+          aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name eks-playground
 
-    - name: Deploy to EKS
-      run: |
-        kubectl apply -f next-deployment.yml
-        kubectl apply -f next-service.yml
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f next-deployment.yml
+          kubectl apply -f next-service.yml
