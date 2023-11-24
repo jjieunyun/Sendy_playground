@@ -8,7 +8,7 @@ const myFont = localFont({
 })
 
 export const metadata = {
-    title: "SENDY_Playground",
+    title: "♫•*¨S e n d y P l a y g r o u n d*•.¸¸♪✧",
 };
 
 
