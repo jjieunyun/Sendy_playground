@@ -41,7 +41,6 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
     const userInfo = useUserContext()?.userInfo;
 
 
-
     const goToAccount = () => {
         router.push('/my-account')
         closeSidebar()

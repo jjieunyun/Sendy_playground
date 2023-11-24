@@ -27,7 +27,7 @@ module.exports = {
             height: px0_2000,
             animation: {
                 zoomAndMove: "zoomAndMove 2s forwards",
-                slider: 'slider 5s linear infinite'
+                slider: 'slider 7s linear infinite'
             },
             fontFamily: {},
             colors: {
