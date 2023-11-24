@@ -1,12 +1,15 @@
+"use client";
+
 import body from '@image/random-lunch/front-bus-body.svg';
 import wheel from '@image/random-lunch/front-bus-tire.svg';
 import eyes from '@image/random-lunch/eyes.svg'
 import Image from 'next/image';
 import useUpDown from '@hooks/useUpDown';
 import Person from "@components/random-lunch/Person";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import useSequentialFadeIn from "@hooks/useSequentialFadeIn";
+import BgClouds from "@components/random-lunch/BgClouds";
 
 const personData = [
     { name: "다엘", gender: "MAN", order:0 },
@@ -16,7 +19,7 @@ const personData = [
     { name: "미소", gender: "WOMAN", order:4 },
 ];
 
-export default function MyResults() {
+export default function MyResult() {
     const { isFold } = useUpDown();
     const [text, setText] = useState('');
     const fullText = '당신과 점심을 함께 할 운명의 상대는...?';
@@ -34,10 +37,8 @@ export default function MyResults() {
         transition: 'transform 1s ease-in-out  ',
     }
 
-
-
     const onClick = () => {
-        router.push('/random-lunch/result')
+        router.push('/random-lunch/group-overviews')
     }
 
     useEffect(() => {
@@ -55,15 +56,14 @@ export default function MyResults() {
     }, []);
 
 
-
-
     return (
-        <section className="w-full h-screen">
+        <main  className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
+            <BgClouds/>
             <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 z-0"></div>
             <article className="px-60 py-26 bg-[#000000] h-97 w-824 flex justify-center items-center mt-144 m-auto">
                 <p className="text-24">{text}</p>
             </article>
-            
+
             <article className=" flex flex-col items-center absolute -bottom-[150px] z-1 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div style={imageStyle}>
                     <Image
@@ -123,6 +123,6 @@ export default function MyResults() {
                     <Image src={eyes} alt={'eyes'}/>
                 </div>
             </article>
-        </section>
+        </main>
     );
 }
