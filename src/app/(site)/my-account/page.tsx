@@ -53,8 +53,17 @@ export default function MyAccount() {
 
     // 폼 제출 핸들러
     const onSubmit = async (data: any) => {
-        const res = await apiClientHandler(updateMyProfile({data}));
+        const test = {
+            "userId":2,
+            "likeFood":"새우,고기",
+            "disLikeFood":"마라탕",
+            "spicyLevel":"MIDDLE_LOW",
+            "introduce":"다엘입니다."
+        }
+
+        const res = await apiClientHandler(updateMyProfile({data:test}));
         if (res.result) {
+            await fetchMyProfile()
             setIsEdit(false);
         }else {
             alert('수정한 내용을 저장하지 못했어요.')

@@ -3,8 +3,10 @@ import React, {useEffect, useState, createContext, useContext} from 'react';
 export interface UserState {
     id: number | undefined;
     userName: string | undefined;
-    teamName: string | undefined;
+    teamName: "SERVICE" | "GA" | "BUSINESS" |"STRATEGY" |"PRODUCT"| undefined;
 }
+
+
 
 export interface ContextState {
     userInfo: UserState | null;

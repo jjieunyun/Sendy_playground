@@ -26,15 +26,15 @@ const Main = () => {
     }
 
     const handleGameItem = () => {
-        showToast({msg: <ToastMessage message={'경품추첨...준비 중입니다...좀만 기둘렷....'}/>})
+        showToast({msg: <ToastMessage message={'경품추첨...준비 중입니다...커밍쑨....!!'}/>})
     }
 
     const handleNoticeItem = () => {
-        showToast({msg: <ToastMessage message={'최상의 맛집을 찾고있는 중 입니다... 좀만 기둘렷....'}/>})
+        showToast({msg: <ToastMessage message={'최상의 맛집을 찾고있는 중 입니다... 커밍쑨....!!'}/>})
     }
 
     const handleCakeItem = () => {
-        showToast({msg: <ToastMessage message={'Happy...birth..day...to........you....Sorry 좀만 기둘렷....'}/>})
+        showToast({msg: <ToastMessage message={'Happy...birth..day...to........you....Sorry😅 커밍쑨....!!'}/>})
     }
 
     return (

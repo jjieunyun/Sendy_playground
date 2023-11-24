@@ -5,6 +5,5 @@ export function getMyProfile() {
 }
 
 export function updateMyProfile({data}:{data: any}) {
-    console.log(data)
     return Axios.post('/api/account/myProfile', data)
 }
