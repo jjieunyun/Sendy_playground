@@ -16,6 +16,7 @@ import PushButton from "@components/common/PushButton";
 import close from '@image/random-lunch/close_pink.svg'
 import apiClientHandler from "@lib/apiClientHandler";
 import {getMyProfile, updateMyProfile} from "@api/Account";
+import {updatePassword} from "@api/Auth";
 
 export default function MyAccount() {
     const [isEdit, setIsEdit] = useState(false);
@@ -36,13 +37,13 @@ export default function MyAccount() {
         const res = await apiClientHandler(getMyProfile());
         if (res.result) {
             // useForm의 setValue를 사용하여 폼 데이터 설정
-            const {disLikeFood, likeFood, introduce, spicyLevel, userId, userName} = res.data
+            const {disLikeFood, likeFood, introduce, spicyLevel, userId, accessId} = res.data
             setValue('disLikeFood', disLikeFood);
-            setValue('likeFood', likeFood );
+            setValue('likeFood', likeFood);
             setValue('introduce', introduce);
             setValue('spicyLevel', spicyLevel || 1); //기본값을1 로주면좋겠음!
             setValue('userId', userId);
-            setValue('userName', userName);
+            setValue('userName', accessId);
 
         }
     };
@@ -53,19 +54,11 @@ export default function MyAccount() {
 
     // 폼 제출 핸들러
     const onSubmit = async (data: any) => {
-        const test = {
-            "userId":2,
-            "likeFood":"새우,고기",
-            "disLikeFood":"마라탕",
-            "spicyLevel":"MIDDLE_LOW",
-            "introduce":"다엘입니다."
-        }
-
-        const res = await apiClientHandler(updateMyProfile({data:test}));
+        const res = await apiClientHandler(updateMyProfile({data: data}));
         if (res.result) {
             await fetchMyProfile()
             setIsEdit(false);
-        }else {
+        } else {
             alert('수정한 내용을 저장하지 못했어요.')
         }
     };
@@ -78,11 +71,12 @@ export default function MyAccount() {
         <>
             <main className="pb-24 mt-80 relative">
                 <Image src={phone} alt="phone" className="w-full h-full"/>
-                <form className={'absolute top-0 w-full h-[calc(100%-64px)] pt-32 pb-149 px-50'} onSubmit={handleSubmit(onSubmit)}>
+                <form className={'absolute top-0 w-full h-[calc(100%-64px)] pt-32 pb-149 px-50'}
+                      onSubmit={handleSubmit(onSubmit)}>
                     <article className="relative">
                         <div className={'flex items-center w-full justify-end'} onClick={() => setIsEdit(!isEdit)}>
                             <span className={'text-14 mr-4 cursor-pointer'}>
-                                <button type={!isEdit?"submit":"button"}>{isEdit ? '저장하기' : '수정하기'}</button>
+                                <button type={!isEdit ? "submit" : "button"}>{isEdit ? '저장하기' : '수정하기'}</button>
                             </span>
                             <Image src={isEdit ? saved : pencil} alt={'pencil'} width={36} height={36}
                                    className={'cursor-pointer'}/>
@@ -110,6 +104,7 @@ export default function MyAccount() {
                                     readOnly={!isEdit}
                                     className={`${inputStyle}`}
                                     placeholder={'좋아하는 음식 적어주셈'}
+                                    autoComplete="off"
                                 />
                             </div>
                             {isEdit && <p className="mt-9 text-12 text-[#BBB]">최대 음식 3개만 작성해주세요!</p>}
@@ -124,6 +119,7 @@ export default function MyAccount() {
                                     readOnly={!isEdit}
                                     className={`${inputStyle}`}
                                     placeholder={'싫어하는 음식 적어주셈'}
+                                    autoComplete="off"
                                 />
                             </div>
                             {isEdit && <p className="mt-9 text-12 text-[#BBB]">최대 음식 3개만 작성해주세요!</p>}
@@ -155,9 +151,10 @@ export default function MyAccount() {
                         <div className={`w-full flex flex-col ${isEdit ? editMode : nonEditMode}`}>
                             <p className={'mb-16 text-[#BBB]'}>내 소개</p>
                             <textarea{...register('introduce')}
-                                        placeholder={'자기소개 적어주셈😊'}
-                                      readOnly={!isEdit}
-                                      className={`h-90 w-full resize-none outline-none bg-transparent`}/>
+                                     placeholder={'자기소개 적어주셈😊'}
+                                     readOnly={!isEdit}
+                                     autoComplete="off"
+                                     className={`h-90 w-full resize-none outline-none bg-transparent`}/>
                         </div>
                     </article>
                 </form>
@@ -182,13 +179,21 @@ export default function MyAccount() {
 }
 
 
+const ModalContents = ({hideModal}: { hideModal: () => void }) => {
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
-const ModalContents = ({hideModal}: {hideModal: () => void }) => {
-    const {register, handleSubmit, formState: { errors }} = useForm();
+    const onSubmit = async (data: any) => {
 
-    const onSubmit = (data:any) => {
-        // 폼 데이터 처리
-        console.log(data);
+        const res = await apiClientHandler(updatePassword({
+            password: data.old_password,
+            newPassword: data.new_password
+        }))
+        if(res.result){
+            alert('비밀번호가 변경되었습니다.')
+            hideModal()
+        }else {
+            alert(res.message)
+        }
     };
 
 
@@ -202,15 +207,15 @@ const ModalContents = ({hideModal}: {hideModal: () => void }) => {
                         isError={errors.old_password && true}
                         labelColor={'black'}
                         type={'password'}
-                        register={register("old_password", { required: true })}
+                        register={register("old_password", {required: true})}
                     />
                     <CustomInput
                         label={'새 비밀번호'}
                         theme={'green'}
                         isError={errors.new_password && true}
                         labelColor={'black'}
-                        type={'password'}
-                        register={register("new_password", { required: true })}
+                        type={'newPassword'}
+                        register={register("new_password", {required: true})}
                     />
                 </div>
 
