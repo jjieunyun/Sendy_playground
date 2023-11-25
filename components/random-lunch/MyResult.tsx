@@ -6,26 +6,29 @@ import eyes from '@image/random-lunch/eyes.svg'
 import Image from 'next/image';
 import useUpDown from '@hooks/useUpDown';
 import Person from "@components/random-lunch/Person";
-import React, {useEffect, useState} from "react";
-import {useRouter} from "next/navigation";
+import React, {useEffect, useRef, useState} from "react";
+import {useRouter, useSearchParams} from "next/navigation";
 import useSequentialFadeIn from "@hooks/useSequentialFadeIn";
 import BgClouds from "@components/random-lunch/BgClouds";
+import apiClientHandler from "@lib/apiClientHandler";
+import {getMyGroupList} from "@api/RandomLunch";
 
-const personData = [
-    { name: "다엘", gender: "MAN", order:0 },
-    { name: "디바", gender: "WOMAN", order:1 },
-    { name: "다이몬도", gender: "MAN", order:2 },
-    { name: "ㅈㅔ인", gender: "WOMAN", order:3 },
-    { name: "미소", gender: "WOMAN", order:4 },
-];
+interface MyGroup {
+    userId: number;
+    userName: string;
+    gender: "WOMEN" | 'MEN';
+    order: number;
+}
 
 export default function MyResult() {
     const { isFold } = useUpDown();
     const [text, setText] = useState('');
     const fullText = '당신과 점심을 함께 할 운명의 상대는...?';
     const router = useRouter()
-    const {visibleNum} = useSequentialFadeIn({maxNum:personData.length})
 
+    const [myGroup, setMyGroup] = useState<MyGroup[]>([])
+    const {visibleNum} = useSequentialFadeIn({maxNum:(myGroup?.length) +1})
+    const randomLunchType = useSearchParams().get('randomLunchType');
 
     const imageStyle = {
         transform: `translateY(${isFold ? 0 : '-8px'})`,
@@ -38,8 +41,38 @@ export default function MyResult() {
     }
 
     const onClick = () => {
-        router.push('/random-lunch/group-overviews')
+        router.push(`/random-lunch/group-overviews?randomLunchType=${randomLunchType}`)
     }
+
+
+
+    const fetchMyGroup = async () => {
+        const res = await apiClientHandler(getMyGroupList({randomLunchType: randomLunchType as string}))
+        if(res?.result){
+            if(res?.data?.groupName){
+                const list = res?.data.myLunchGroupUser
+
+                const usersWithOrder = list.map((user:any, index:any) => ({
+                    ...user,
+                    order: index + 1
+                }));
+
+
+                setMyGroup(usersWithOrder)
+            }else {
+                router.replace(`/random-lunch/group-overviews?randomLunchType=${randomLunchType}`)
+            }
+
+        }else {
+            alert(res?.message)
+            router.replace('/random-lunch')
+        }
+    }
+
+
+    useEffect(() => {
+        fetchMyGroup()
+    }, []);
 
     useEffect(() => {
         let currentIndex = 0;
@@ -59,70 +92,75 @@ export default function MyResult() {
     return (
         <main  className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
             <BgClouds/>
-            <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 z-0"></div>
-            <article className="px-60 py-26 bg-[#000000] h-97 w-824 flex justify-center items-center mt-144 m-auto">
-                <p className="text-24">{text}</p>
-            </article>
 
-            <article className=" flex flex-col items-center absolute -bottom-[150px] z-1 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div style={imageStyle}>
+            {
+                myGroup.length > 0 &&<>
+                <article className="px-60 py-26 bg-[#000000] h-97 w-824 flex justify-center items-center mt-144 m-auto">
+                  <p className="text-24">{text}</p>
+                </article>
+
+                <article className=" flex flex-col items-center absolute -bottom-[150px] z-1 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div style={imageStyle}>
                     <Image
-                        src={body}
-                        width={456}
-                        alt=""
-                        className="w-456 h-auto"
+                      src={body}
+                      width={456}
+                      alt=""
+                      className="w-456 h-auto"
                     />
-                </div>
-                <Image
+                  </div>
+                  <Image
                     src={wheel}
                     width={386}
                     alt="wheel"
                     className="-mt-45 -z-[1] w-386 h-auto"
-                />
-            </article>
+                  />
+                </article>
 
-            <article className="absolute bottom-120 w-full">
-                <div className='flex justify-center gap-x-[500px]'>
+                <article className="absolute bottom-120 w-full">
+                  <div className='flex justify-center gap-x-[500px]'>
                     <div className={'flex gap-x-20 w-400 justify-start'}>
-                        {personData
+                        {myGroup
                             .filter((person, index) => index % 2 === 0)
                             .map((person, index) => (
                                 <Person
                                     key={index}
-                                    name={person.name}
+                                    name={person?.userName}
                                     gender={person.gender}
                                     className={`transition-opacity ease-in-out duration-100 ${person.order < visibleNum? person.order === visibleNum &&  'opacity-100':'opacity-0'}`}
                                 />
                             ))}
                     </div>
                     <div className={'flex gap-x-20 w-400 justify-start'}>
-                        {personData
+                        {myGroup
                             .filter((person, index) => index % 2 !== 0)
                             .map((person, index) => (
                                 <Person
                                     key={index}
-                                    name={person.name}
+                                    name={person.userName}
                                     gender={person.gender}
                                     className={`transition-opacity ease-in-out duration-100 ${person.order < visibleNum? person.order === visibleNum && 'opacity-100':'opacity-0'}`}
                                 />
                             ))}
                     </div>
-                </div>
-            </article>
+                  </div>
+                </article>
 
 
-            <article className={'absolute bottom-30 right-30 flex flex-col items-end'}>
-                <p className={'text-black text-36 font-400 -mb-4' } style={textStyle}>Click!!</p>
-                <div
+                <article className={'absolute bottom-30 right-30 flex flex-col items-end'}>
+                  <p className={'text-black text-36 font-400 -mb-4' } style={textStyle}>Click!!</p>
+                  <div
                     onClick={onClick}
                     className={'border-3 rounded-4 border-black p-16 w-fit bg-sp_blue flex  items-center gap-x-22 cursor-pointer'}>
                     <div className={'flex flex-col'}>
-                        <span>염탐하러가기</span>
-                        <span className={'text-12'}>다른사람은 누구랑 먹을까?</span>
+                      <span>염탐하러가기</span>
+                      <span className={'text-12'}>다른사람은 누구랑 먹을까?</span>
                     </div>
                     <Image src={eyes} alt={'eyes'}/>
-                </div>
-            </article>
+                  </div>
+                </article>
+                <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 -z-[10]"></div>
+              </>
+            }
         </main>
     );
 }

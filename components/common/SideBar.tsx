@@ -40,7 +40,6 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
     const {onUserLogout} = useAuth()
     const userInfo = useUserContext()?.userInfo;
 
-
     const goToAccount = () => {
         router.push('/my-account')
         closeSidebar()

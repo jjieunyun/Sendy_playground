@@ -6,25 +6,46 @@ import clover from '@image/random-lunch/clover.svg'
 import IcRyan from '@image/random-lunch/ic_Ryan.svg'
 import IcClover from '@image/random-lunch/ic_clover.svg'
 import useSequentialFadeIn from "@hooks/useSequentialFadeIn";
+import {useEffect, useState} from "react";
+import apiClientHandler from "@lib/apiClientHandler";
+import {getAllGroupList} from "@api/RandomLunch";
+import {useSearchParams, useRouter} from "next/navigation";
 
-type GroupData = {
-    [key: string]: string[];
-};
 
-const groupData: GroupData = {
-    0: ['라이언','디바','제이크'],
-    1: ['지구','디바','제이크'],
-    2: ['데이먼','디바','제이크'],
-    3: ['톰','디바','제이크'],
-    4: ['몰리','디바','제이크']
+
+
+const transformData = ({newData}:{newData: any}) => {
+    return newData.map((group:any) => {
+        const members = group.users.map((user:any) => user.name);
+        if (group.groupName === 'RYAN') {
+            members.push('라이언');
+        }
+        return members;
+    });
 }
 
 export default function Result(){
-    const bounceUpVariants = {
-        start: { y: "0px" },
-        up: { y: "-30px" }
-    };
-    const {visibleNum} = useSequentialFadeIn({maxNum:Object.keys(groupData).length})
+    const [allGroup, setAllGroup] = useState([])
+    const {visibleNum} = useSequentialFadeIn({maxNum:allGroup.length})
+
+    const randomLunchType = useSearchParams().get('randomLunchType');
+    const router = useRouter()
+
+    const fetchAllGroupList = async () => {
+        const res = await apiClientHandler(getAllGroupList({randomLunchType:randomLunchType as string}))
+        if(res?.result){
+            setAllGroup(res.data.lunchGroupUserDTO)
+        }else {
+            alert(res?.message)
+            router.replace('/random-lunch')
+        }
+    }
+
+
+    useEffect(() => {
+        if(!randomLunchType)return
+        fetchAllGroupList()
+    }, []);
 
 
     return(
@@ -40,11 +61,10 @@ export default function Result(){
 
             <section className={'w-full max-w-1024 h-fit flex gap-16 flex-wrap justify-center items-center m-auto mb-100'}>
                 {
-                    Object.keys(groupData).map((key, index) => {
-                        const item = groupData[key];
+                    allGroup.length > 0 &&  transformData({newData: allGroup})?.map((members:any, index:any) => {
                         return <CardContainer
                             className={`transition-opacity ease-in-out duration-100 ${index < visibleNum? index === visibleNum &&  'opacity-100':'opacity-0'}`}
-                            key={key} members={item} />;
+                            key={index} members={members} />;
                     })
                 }
             </section>

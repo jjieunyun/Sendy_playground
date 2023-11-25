@@ -25,7 +25,7 @@ export default function Person({name, gender, className, style}: {
                     {name}
                 </span>
             </div>
-            {gender === 'MAN' ? (
+            {gender === 'MEN' ? (
                 <div className="flex flex-col items-center justify-end">
                     <Image src={MHead} width="81" alt="WHead" className="z-0"/>
                     <Image src={MBody} width="64" alt="WBody"

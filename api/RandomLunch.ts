@@ -8,9 +8,13 @@ export function getMealResultStatus({randomLunchType}: { randomLunchType: string
     })
 }
 
-// export function getMyGroupList() {
-//     return Axios.get('/api/randomLunch/myGroupList')
-// }
+export function getMyGroupList({randomLunchType}: { randomLunchType: string }) {
+    return Axios.get('/api/randomLunch/myGroupList',{
+        params: {
+            randomLunchType
+        }
+    })
+}
 
 export function getExcludeGroupList({randomLunchType}: { randomLunchType: string }) {
     return Axios.get('/api/randomLunch/excludedUsers', {
@@ -20,18 +24,24 @@ export function getExcludeGroupList({randomLunchType}: { randomLunchType: string
     })
 }
 
-//점심제외자리스트에 추가해달라고 요청
-export function addToExcludeGroup({randomLunchType, userId}: { randomLunchType: string, userId: number }) {
-    return Axios.post('/api/randomLunch/exclusion', {
-        randomLunchType,
-        userId
+export function getAllGroupList({randomLunchType}: { randomLunchType: string }) {
+    return Axios.get('/api/randomLunch/allGroup', {
+        params: {
+            randomLunchType
+        }
     })
 }
 
-export function removeFromExcludeGroup({randomLunchType, userId}: { randomLunchType: string, userId: number }) {
+//점심제외자리스트에 추가해달라고 요청
+export function addToExcludeGroup({randomLunchType}: { randomLunchType: string }) {
+    return Axios.post('/api/randomLunch/exclusion', {
+        randomLunchType,
+    })
+}
+
+export function removeFromExcludeGroup({randomLunchType}: { randomLunchType: string }) {
     return Axios.post('/api/randomLunch/inclusion', {
         randomLunchType,
-        userId
     })
 }
 
