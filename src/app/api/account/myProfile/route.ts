@@ -21,10 +21,11 @@ export async function GET() {
 
 export async function POST(req: any) {
     const token = cookies().get('sp_token')?.value || '';
-    const {body} = req;
+    const requestBody = await req.json();
+
 
     try {
-        const response = await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/profile/update`, body, {
+        const response = await Axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/profile/update`, requestBody, {
             headers: {
                 Authorization:token,
             }

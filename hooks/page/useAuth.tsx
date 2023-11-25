@@ -4,7 +4,6 @@ import {ContextState, useUserContext} from "@context/UserContext";
 import apiClientHandler from "@lib/apiClientHandler";
 import {onUserSignOut} from "@api/Auth";
 import Axios from "axios";
-import {getUserInfo} from "@api/Auth";
 
 interface AuthState {
     loading: boolean;
@@ -18,19 +17,10 @@ export default function useAuth() {
         isLogin: false,
         error: undefined,
     });
-    const {setUserInfo} = useUserContext() as ContextState
+    const {setUserInfo, fetchUserInfo} = useUserContext() as ContextState
     const router = useRouter()
 
-    const fetchUserInfo = async () => {
-        const res = await apiClientHandler(getUserInfo());
-        if (res.result) {
-            setUserInfo({
-                id: res.data.userId,
-                userName: res.data.userName,
-                teamName: res.data.teamName,
-            })
-        }
-    }
+
     
     const onUserLogin = async({data}: { data: any }) => {
         setAuthState(() => ({
@@ -63,7 +53,8 @@ export default function useAuth() {
             setUserInfo({
                     id: undefined,
                     userName: undefined,
-                    teamName: undefined
+                    teamName: undefined,
+                    userKoName: undefined,
             })
             router.replace('/')
         }else {

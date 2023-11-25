@@ -15,10 +15,13 @@ import {addToExcludeGroup, getExcludeGroupList, removeFromExcludeGroup} from "@a
 import {useSearchParams} from 'next/navigation'
 import BgClouds from "@components/random-lunch/BgClouds";
 import {useUserContext} from "@context/UserContext";
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 
 interface Member {
     userName: string;
     userId: number;
+    gender: string;
 }
 
 export default function JoinNow() {
@@ -27,13 +30,15 @@ export default function JoinNow() {
     const [members, setMembers] = useState<Member[]>([]);
     const [isSelfExcluded, setIsSelfExcluded] = useState<null | boolean>(null) //true면 제외자에 등록, false면 제외자에 등록되지 않음
     const userInfo = useUserContext()?.userInfo
+    const [date,setDate] = useState("")
 
 
     const fetchExcludeGroupList = async () => {
         const res = await apiClientHandler(getExcludeGroupList({randomLunchType: randomLunchType as string}))
-        if (res.result) {
-            const group = res.data
+        if (res?.result) {
+            const group = res?.data?.userInfo
             setMembers(group)
+            setDate(dayjs(res?.data?.mealDate).locale('ko').format('MM월 DD일 dddd'))
         } else {
             alert('오류가 발생했습니다. 다엘 또는 제인에게 문의주세요!')
         }
@@ -52,7 +57,6 @@ export default function JoinNow() {
             setIsSelfExcluded(true)
             const res = await apiClientHandler(removeFromExcludeGroup({
                 randomLunchType: randomLunchType as string,
-                userId: userInfo?.id as number
             }))
             if(res.result){
                 fetchExcludeGroupList()
@@ -65,7 +69,6 @@ export default function JoinNow() {
             setIsSelfExcluded(false)
             const res = await apiClientHandler(addToExcludeGroup({
                 randomLunchType: randomLunchType as string,
-                userId: userInfo?.id as number
             }))
             if(res.result){
                 fetchExcludeGroupList()
@@ -107,7 +110,7 @@ export default function JoinNow() {
             <div className="">
                 <div>
                     <Image src={bubble} alt={'container'} className={'absolute bottom-[490px] left-120'}/>
-                    <p className={'absolute bottom-[520px] left-150 text-black text-24'}>11월 1일 화요일 오전 11시 출발합니다.</p>
+                    <p className={'absolute bottom-[520px] left-150 text-black text-24'}>{date} 오전 11시 출발합니다.</p>
                 </div>
 
                 <div className={`w-full h-full absolute transition-transform ${isFold ? '-mt-4' : '-mt-8'}`}>
@@ -122,8 +125,8 @@ export default function JoinNow() {
             </div>
             <div className="absolute bottom-60 right-20 flex gap-x-40">
                 {
-                    members.map((member, index) => {
-                        return <Person name={member?.userName} gender="WOMAN" key={index}/> //수정하기
+                    members?.map((member, index) => {
+                        return <Person name={member?.userName} gender={member?.gender} key={index}/> //수정하기
 
                     })
                 }
