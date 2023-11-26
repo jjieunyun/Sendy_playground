@@ -90,10 +90,10 @@ export default function MyAccount() {
                         <div className="relative">
                             {/*<Image src={profile} alt={'profile'} className={'mb-16'} width={100} height={100}/>*/}
                             <Image src={userInfo?.gender === 'MEN' ? boy:girl} alt={'Avatar'} width={70} className={'m-auto mb-10'}/>
-                            {
-                                isEdit &&
-                              <Image src={camera} alt="camera" className="absolute -mt-50 right-1 cursor-pointer"/>
-                            }
+                            {/*{*/}
+                            {/*    isEdit &&*/}
+                            {/*  <Image src={camera} alt="camera" className="absolute -mt-50 right-1 cursor-pointer"/>*/}
+                            {/*}*/}
                         </div>
 
                         <p className={'text-24'}>Hello!</p>
