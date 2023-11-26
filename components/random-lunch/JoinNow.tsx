@@ -17,6 +17,10 @@ import BgClouds from "@components/random-lunch/BgClouds";
 import {useUserContext} from "@context/UserContext";
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import useSequentialFadeIn from "@hooks/useSequentialFadeIn";
+import arrow from "@image/random-lunch/arrow.svg";
+import {useRouter} from "next/navigation";
+import GoBackArrow from "@components/common/GoBackArrow";
 
 interface Member {
     userName: string;
@@ -30,7 +34,8 @@ export default function JoinNow() {
     const [members, setMembers] = useState<Member[]>([]);
     const [isSelfExcluded, setIsSelfExcluded] = useState<null | boolean>(null) //true면 제외자에 등록, false면 제외자에 등록되지 않음
     const userInfo = useUserContext()?.userInfo
-    const [date,setDate] = useState("")
+    const [date,setDate] = useState('00월 00일 0요일')
+    const {visibleNum} = useSequentialFadeIn({maxNum:(members?.length)+2, delay: 0})
 
 
     const fetchExcludeGroupList = async () => {
@@ -43,6 +48,8 @@ export default function JoinNow() {
             alert('오류가 발생했습니다. 다엘 또는 제인에게 문의주세요!')
         }
     }
+
+
 
     useEffect(()=>{
         setIsSelfExcluded(members.some((member: Member) => member.userId === userInfo?.id))
@@ -82,7 +89,7 @@ export default function JoinNow() {
 
     return (
         <main
-            className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
+            className="max-w-[1500px] w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
             <BgClouds/>
             <div className="h-150 w-full bg-[#8CFF9B] absolute bottom-0 "></div>
             <div className="">
@@ -107,6 +114,8 @@ export default function JoinNow() {
                 </div>
             </div>
 
+
+
             <div className="">
                 <div>
                     <Image src={bubble} alt={'container'} className={'absolute bottom-[490px] left-120'}/>
@@ -126,11 +135,13 @@ export default function JoinNow() {
             <div className="absolute bottom-60 right-20 flex gap-x-40">
                 {
                     members?.map((member, index) => {
-                        return <Person name={member?.userName} gender={member?.gender} key={index}/> //수정하기
+                        return <Person name={member?.userName} gender={member?.gender} key={index} className={`${index < visibleNum? index === visibleNum &&  'opacity-100':'opacity-0'}`}/> //수정하기
 
                     })
                 }
             </div>
+            <GoBackArrow/>
+
         </main>
     )
 }
