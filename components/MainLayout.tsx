@@ -5,12 +5,15 @@ import apiClientHandler from "@lib/apiClientHandler";
 import {usePathname} from 'next/navigation'
 import {getUserInfo} from "@api/Auth"
 
+
+
 export default function MainLayout({children}: { children: React.ReactNode }) {
     const [_userInfo, _setUserInfo] = useState<UserState>({
         id: undefined,
         userName: undefined,
         teamName: undefined,
         userKoName: undefined,
+        gender: undefined,
     })
     const path = usePathname()
 
@@ -18,12 +21,13 @@ export default function MainLayout({children}: { children: React.ReactNode }) {
         const res = await apiClientHandler(getUserInfo())
 
         if (res.result) {
-            const {teamName, userName, userId, accessId} = res.data
+            const {teamName, userName, userId, accessId, gender} = res.data
             _setUserInfo({
                 id: userId,
                 userName: accessId,
                 userKoName: userName,
-                teamName: teamName
+                teamName: teamName,
+                gender: gender,
             })
         }
     }

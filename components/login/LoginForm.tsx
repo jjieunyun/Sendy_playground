@@ -41,7 +41,7 @@ export default function LoginForm({handleTabChange, title}: {
 
     
     return (
-        <section className="flex flex-col justify-start items-center w-full">
+        <section className="flex flex-col justify-start items-center w-full ">
             <p className={`text-18 ${title === '관리자' ? 'bg-sp_green text-sp_pink' : 'bg-sp_pink text-sp_green'} p-4 mb-30 w-90 flex justify-center`}>{title}용</p>
             
             <form

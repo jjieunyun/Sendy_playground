@@ -1,27 +1,34 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-export default function useSequentialFadeIn({maxNum}:{maxNum:number}) {
-    const [visibleNum, setVisibleNum] = useState(0);
+export default function useSequentialFadeIn({ maxNum, delay = 0 }: { maxNum: number, delay?: number }) {
+    const [visibleNum, setVisibleNum] = useState(-1);
 
     useEffect(() => {
-        if(!maxNum) return
+        if (!maxNum) return;
 
         const fadeInInterval = 500; // 각 컴포넌트가 나타나는 간격(ms)
 
-        const timer = setInterval(() => {
-            if (visibleNum < maxNum) {
-                setVisibleNum((prevCount) => prevCount + 1);
-            } else {
-                clearInterval(timer);
-            }
-        }, fadeInInterval);
+        let timer: string | number | NodeJS.Timeout | undefined;
+
+        // 초기 딜레이 후에 순차적으로 표시 시작
+        const initialDelayTimer = setTimeout(() => {
+            timer = setInterval(() => {
+                setVisibleNum((prevNum) => {
+                    if (prevNum < maxNum - 1) {
+                        return prevNum + 1;
+                    } else {
+                        clearInterval(timer);
+                        return prevNum;
+                    }
+                });
+            }, fadeInInterval);
+        }, delay);
 
         return () => {
-            if (visibleNum < maxNum) {
-                clearInterval(timer);
-            }
+            clearInterval(timer);
+            clearTimeout(initialDelayTimer);
         };
-    }, [visibleNum,maxNum]);
+    }, [maxNum, delay]);
 
-    return{visibleNum}
+    return { visibleNum };
 }

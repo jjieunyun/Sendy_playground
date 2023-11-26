@@ -12,6 +12,8 @@ import useSequentialFadeIn from "@hooks/useSequentialFadeIn";
 import BgClouds from "@components/random-lunch/BgClouds";
 import apiClientHandler from "@lib/apiClientHandler";
 import {getMyGroupList} from "@api/RandomLunch";
+import arrow from "@image/random-lunch/arrow.svg"
+import GoBackArrow from "@components/common/GoBackArrow";
 
 interface MyGroup {
     userId: number;
@@ -27,7 +29,7 @@ export default function MyResult() {
     const router = useRouter()
 
     const [myGroup, setMyGroup] = useState<MyGroup[]>([])
-    const {visibleNum} = useSequentialFadeIn({maxNum:(myGroup?.length) +1})
+    const {visibleNum} = useSequentialFadeIn({maxNum:(myGroup?.length) +2, delay: 1500})
     const randomLunchType = useSearchParams().get('randomLunchType');
 
     const imageStyle = {
@@ -88,13 +90,12 @@ export default function MyResult() {
         return () => clearInterval(interval);
     }, []);
 
-
     return (
-        <main  className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
+        <main  className="max-w-[1500px] w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
             <BgClouds/>
 
             {
-                myGroup.length > 0 &&<>
+                myGroup.length > 0 && <>
                 <article className="px-60 py-26 bg-[#000000] h-97 w-824 flex justify-center items-center mt-144 m-auto">
                   <p className="text-24">{text}</p>
                 </article>
@@ -144,6 +145,8 @@ export default function MyResult() {
                     </div>
                   </div>
                 </article>
+
+              <GoBackArrow/>
 
 
                 <article className={'absolute bottom-30 right-30 flex flex-col items-end'}>

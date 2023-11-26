@@ -5,6 +5,7 @@ export interface UserState {
     userName: string | undefined;
     userKoName: string | undefined;
     teamName: "SERVICE" | "GA" | "BUSINESS" | "STRATEGY" | "PRODUCT" | undefined;
+    gender : string | undefined;
 }
 
 
@@ -26,6 +27,7 @@ export function UserContextProvider({children, fetchUserInfo, userState}: {
         userName: undefined,
         userKoName: undefined,
         teamName: undefined,
+        gender: undefined,
     });
 
 
