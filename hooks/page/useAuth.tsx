@@ -55,6 +55,7 @@ export default function useAuth() {
                     userName: undefined,
                     teamName: undefined,
                     userKoName: undefined,
+                    gender: undefined,
             })
             router.replace('/')
         }else {

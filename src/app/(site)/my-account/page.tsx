@@ -17,10 +17,14 @@ import close from '@image/random-lunch/close_pink.svg'
 import apiClientHandler from "@lib/apiClientHandler";
 import {getMyProfile, updateMyProfile} from "@api/Account";
 import {updatePassword} from "@api/Auth";
+import boy from "@image/boy.svg";
+import girl from "@image/girl.svg";
+import {useUserContext} from "@context/UserContext";
 
 export default function MyAccount() {
     const [isEdit, setIsEdit] = useState(false);
     const {isModalVisible, showModal, hideModal} = useModal();
+    const userInfo = useUserContext()?.userInfo;
 
     const {register, handleSubmit, setValue, formState: {errors}, watch} = useForm({
         defaultValues: {
@@ -29,7 +33,7 @@ export default function MyAccount() {
             introduce: '',
             spicyLevel: 1,
             userId: '',
-            userName: '',
+            userName: '-',
         }
     });
 
@@ -69,9 +73,9 @@ export default function MyAccount() {
 
     return (
         <>
-            <main className="pb-24 mt-80 relative">
+            <main className="max-w-[1500px] pb-24 mt-80 relative">
                 <Image src={phone} alt="phone" className="w-full h-full"/>
-                <form className={'absolute top-0 w-full h-[calc(100%-64px)] pt-32 pb-149 px-50'}
+                <form className={'absolute top-0 w-full h-[calc(100%-64px)] pt-50 pb-149 px-60'}
                       onSubmit={handleSubmit(onSubmit)}>
                     <article className="relative">
                         <div className={'flex items-center w-full justify-end'} onClick={() => setIsEdit(!isEdit)}>
@@ -84,7 +88,8 @@ export default function MyAccount() {
                     </article>
                     <article className={'my-40 flex justify-center items-center flex-col w-full'}>
                         <div className="relative">
-                            <Image src={profile} alt={'profile'} className={'mb-16'} width={100} height={100}/>
+                            {/*<Image src={profile} alt={'profile'} className={'mb-16'} width={100} height={100}/>*/}
+                            <Image src={userInfo?.gender === 'MEN' ? boy:girl} alt={'Avatar'} width={70} className={'m-auto mb-10'}/>
                             {
                                 isEdit &&
                               <Image src={camera} alt="camera" className="absolute -mt-50 right-1 cursor-pointer"/>

@@ -41,7 +41,7 @@ const Auth: NextPage = () => {
     }
     
     return (
-        <main className="w-full h-screen relative flex justify-center items-center overflow-hidden">
+        <main className=" w-full h-screen relative flex justify-center items-center overflow-hidden pt-50">
             <motion.div
                 className="z-10 "
                 initial={{ scale: 1, y: 0 }}
@@ -95,7 +95,7 @@ const Auth: NextPage = () => {
                     }
                     {
                         !currentTab && (
-                            <div className="flex w-full gap-x-24 justify-center">
+                            <div className="flex w-full gap-x-24 justify-center pt-50">
                                 <PushButton label={'관리자용'} theme={'pink'} onClick={()=>handleTabChange('관리자')} type="button"/>
                                 <PushButton label={'참여자용'} theme={'green'} onClick={()=>handleTabChange('참여자')} type="button"/>
                             </div>

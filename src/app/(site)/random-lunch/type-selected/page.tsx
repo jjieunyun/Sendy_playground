@@ -39,7 +39,7 @@ export default function TypeSelected() {
 
 const LoadingCompo = () => {
     return(
-        <main  className="w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
+        <main  className="max-w-[1500px] w-full h-full overflow-hidden z-0 bg-[url('/image/random-lunch/random_bg.svg')] bg-no-repeat bg-cover relative">
             <BgClouds/>
         </main>
     )

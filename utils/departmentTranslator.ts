@@ -4,7 +4,7 @@ export default function depTranslator ({dep}: { dep: Department }) {
         "SERVICE": "서본",
         "GA": "GA팀",
         "BUSINESS": "비본",
-        "STRATEGY": "전략기획",
+        "STRATEGY": "전략기획팀",
         "PRODUCT": "제품팀",
     };
 

@@ -6,10 +6,11 @@ import { useRouter } from 'next/navigation'
 import close from '@image/close.svg'
 import {v4 as uuidv4} from "uuid"
 import logout from '@image/logout.svg'
-import apiClientHandler from "@lib/apiClientHandler";
 import useAuth from "@hooks/page/useAuth";
 import {UserContext, useUserContext} from "@context/UserContext";
-import {useContext} from "react";
+import girl from '@image/girl.svg'
+import boy from '@image/boy.svg'
+
 
 const menuData = [
     {
@@ -63,7 +64,8 @@ export default function SideBar ({closeSidebar}:{closeSidebar:()=>void}){
                     </div>
                     <article className="w-full px-24 flex gap-x-8">
                         <div className="flex items-center gap-x-16">
-                            <div className="w-80 h-80 bg-sp_pink rounded-full"></div>
+                            {/*<div className="w-80 h-80 bg-sp_pink rounded-full"></div>*/}
+                            <Image src={userInfo?.gender === 'MEN' ? boy:girl} alt={'Avatar'} width={70} className={'m-auto'}/>
                             <div>
                                 <span className="text-24">hello! </span>
                                 <span className="text-32 text-sp_pink">{userInfo?.userName}</span>
