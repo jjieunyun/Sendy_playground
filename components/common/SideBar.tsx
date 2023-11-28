@@ -31,7 +31,7 @@ const menuData = [
     {
         id : uuidv4(),
         title : '맛집리스트',
-        path : '/random-lunch',
+        path : '/main',
     },
 ]
 

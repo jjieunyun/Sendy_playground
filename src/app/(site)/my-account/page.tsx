@@ -73,9 +73,9 @@ export default function MyAccount() {
 
     return (
         <>
-            <main className="max-w-[1500px] pb-24 mt-80 relative">
-                <Image src={phone} alt="phone" className="w-full h-full"/>
-                <form className={'absolute top-0 w-full h-[calc(100%-64px)] pt-50 pb-149 px-60'}
+            <main className="max-w-[610px] max-h-[916px] w-full h-full m-auto relative p-30">
+                <Image src={phone} alt="phone" className="w-full h-full max-w-[610px] relative"/>
+                <form className={'absolute top-0 w-full  max-w-[550px] max-h-[calc(100%-64px)] mt-80 pb-149 px-50 bg-amber-100'}
                       onSubmit={handleSubmit(onSubmit)}>
                     <article className="relative">
                         <div className={'flex items-center w-full justify-end'} onClick={() => setIsEdit(!isEdit)}>
@@ -86,7 +86,7 @@ export default function MyAccount() {
                                    className={'cursor-pointer'}/>
                         </div>
                     </article>
-                    <article className={'my-40 flex justify-center items-center flex-col w-full'}>
+                    <article className={'my-30 flex items-center w-full px-10'}>
                         <div className="relative">
                             {/*<Image src={profile} alt={'profile'} className={'mb-16'} width={100} height={100}/>*/}
                             <Image src={userInfo?.gender === 'MEN' ? boy:girl} alt={'Avatar'} width={70} className={'m-auto mb-10'}/>
@@ -96,14 +96,17 @@ export default function MyAccount() {
                             {/*}*/}
                         </div>
 
-                        <p className={'text-24'}>Hello!</p>
-                        <p className={'text-sp_pink text-32 -mt-6'}>{watch('userName')}</p>
+                        <div className="flex flex-col justify-center items-center ml-20">
+                            <p className={'text-24'}>Hello!</p>
+                            <p className={'text-sp_green text-32 -mt-6'}>{watch('userName')}</p>
+                        </div>
+                        
                     </article>
-                    <article className={'flex flex-col h-[calc(100%-280px)] overflow-y-scroll scroll-hidden gap-y-20'}>
+                    <article className={'flex flex-col h-[calc(100%-150px)] overflow-y-scroll scroll-hidden gap-y-20'}>
                         <div>
                             <div
                                 className={`${isEdit ? editMode : nonEditMode} w-full flex justify-between items-center`}>
-                                <span className="text-[#BBB]"> 선호 음식</span>
+                                <span className="text-sp_pink"> 선호 음식</span>
                                 <input
                                     {...register('likeFood')}
                                     readOnly={!isEdit}
@@ -118,7 +121,7 @@ export default function MyAccount() {
                         <div>
                             <div
                                 className={`${isEdit ? editMode : nonEditMode} w-full flex justify-between items-center`}>
-                                <span className="text-[#BBB]">비선호 음식</span>
+                                <span className="text-sp_pink">비선호 음식</span>
                                 <input
                                     {...register('disLikeFood')}
                                     readOnly={!isEdit}
@@ -132,7 +135,7 @@ export default function MyAccount() {
 
 
                         <div className={`${isEdit ? editMode : nonEditMode} w-full flex justify-between items-center`}>
-                            <span className="text-[#BBB]">맵난이도</span>
+                            <span className="text-sp_pink">맵난이도</span>
                             <span className={'text-18 flex gap-x-2'}>
                             {[1, 2, 3, 4, 5].map(level => (
                                 <div
@@ -154,12 +157,12 @@ export default function MyAccount() {
                         </div>
 
                         <div className={`w-full flex flex-col ${isEdit ? editMode : nonEditMode}`}>
-                            <p className={'mb-16 text-[#BBB]'}>내 소개</p>
+                            <p className={'mb-16 text-sp_pink'}>내 소개</p>
                             <textarea{...register('introduce')}
                                      placeholder={'자기소개 적어주셈😊'}
                                      readOnly={!isEdit}
                                      autoComplete="off"
-                                     className={`h-90 w-full resize-none outline-none bg-transparent`}/>
+                                     className={`max-h-90 w-full resize-none outline-none bg-transparent`}/>
                         </div>
                     </article>
                 </form>
@@ -168,7 +171,7 @@ export default function MyAccount() {
             <section>
                 <button
                     onClick={showModal}
-                    className={'bg-sp_blue p-16 absolute right-24 bottom-24 text-black rounded-4 hover:brightness-75 transition-all'}>
+                    className={'bg-sp_blue p-16 fixed right-24 bottom-24 text-black rounded-4 hover:brightness-75 transition-all'}>
                     비밀번호 변경
                 </button>
                 <Modal isVisible={isModalVisible}>
