@@ -104,16 +104,16 @@ export default function MyResult() {
                   <div style={imageStyle}>
                     <Image
                       src={body}
-                      width={456}
+                      width={420}
                       alt=""
-                      className="w-456 h-auto"
+                      className="w-410 h-auto"
                     />
                   </div>
                   <Image
                     src={wheel}
-                    width={386}
+                    width={340}
                     alt="wheel"
-                    className="-mt-45 -z-[1] w-386 h-auto"
+                    className="-mt-45 -z-[1] w-340 h-auto"
                   />
                 </article>
 
