@@ -219,7 +219,7 @@ const ModalContents = ({hideModal}: { hideModal: () => void }) => {
                         theme={'green'}
                         isError={errors.new_password && true}
                         labelColor={'black'}
-                        type={'newPassword'}
+                        type={'password'}
                         register={register("new_password", {required: true})}
                     />
                 </div>
